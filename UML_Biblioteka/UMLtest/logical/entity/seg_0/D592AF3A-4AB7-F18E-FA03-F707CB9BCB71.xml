@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D592AF3A-4AB7-F18E-FA03-F707CB9BCB71" name="Egzemplarz">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-26 10:45:33 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_egzemplarza" id="DAE25AA8-EF0A-C0EE-FB2B-F5A3255B257D">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-26 10:52:00 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="isbn" id="3C97B5B6-E185-CCBA-DA39-8365F0BAE3F8">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-26 10:55:49 UTC</createdTime>
+<generatorID>4EA76172-BE89-3CC1-E76E-CFD23F65F80B</generatorID>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<referedAttribute>58E273D1-C1E1-41F1-3C02-206A56360553</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="czy_wypozyczony" id="642F90AF-924B-3ACB-B883-FDB2C80C54D6">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-26 11:04:02 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0EAAC278-4ACD-EE3C-B21C-B881EFC7F841" name="Egzemplarz PK">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-26 10:52:15 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>DAE25AA8-EF0A-C0EE-FB2B-F5A3255B257D</attributeRef>
+<attributeRef>3C97B5B6-E185-CCBA-DA39-8365F0BAE3F8</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

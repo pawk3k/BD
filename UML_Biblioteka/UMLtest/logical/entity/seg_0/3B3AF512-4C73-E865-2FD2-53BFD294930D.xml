@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3B3AF512-4C73-E865-2FD2-53BFD294930D" name="Uzytkownik">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-19 18:45:28 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_uzyt" id="278ECEF4-2E41-3550-AD5D-6B84BBDD1C22">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-20 15:05:27 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="imie" id="42B1AEAA-5C51-1298-4DDB-9580759AE60F">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-20 15:05:35 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazwisko" id="C3D6BC02-4305-3DE6-6D28-42D019209012">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-20 15:05:41 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="427B81F1-A3A9-5322-1183-546EAED26AD3" name="Uzytkownik PK">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-20 15:05:34 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>278ECEF4-2E41-3550-AD5D-6B84BBDD1C22</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="26101D64-D618-462D-F6FD-1D825F33B0DE" name="Gatunek">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-21 17:43:23 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="nazwa" id="AD774A0A-E606-E703-3312-375EC588FAE2">
+<createdBy>wojtek</createdBy>
+<createdTime>2020-11-21 21:40:45 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="isbn" id="66E0859E-9F0D-37F4-1F42-DDA406270A56">
+<createdBy>wojtek</createdBy>
+<createdTime>2020-11-26 10:30:02 UTC</createdTime>
+<generatorID>D48E69C7-397F-F3D7-C8D6-127B09E44B3D</generatorID>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>58E273D1-C1E1-41F1-3C02-206A56360553</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="38969A35-B9A7-EF8A-282C-0B3F330A2734" name="Gatunek PK">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-21 17:59:51 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>AD774A0A-E606-E703-3312-375EC588FAE2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

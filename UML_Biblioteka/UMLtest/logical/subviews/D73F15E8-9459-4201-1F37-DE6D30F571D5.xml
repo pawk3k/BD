@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Diagram class="oracle.dbtools.crest.swingui.logical.DPVLogicalSubView" name="Logical - SubView_1" id="D73F15E8-9459-4201-1F37-DE6D30F571D5">
+<createdBy>kraven</createdBy>
+<modifiedBy>kraven</modifiedBy>
+<createdTime>2020-11-19 18:45:00 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<gridEnabled>false</gridEnabled>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<display>false</display>
+<notation>1</notation>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="3B3AF512-4C73-E865-2FD2-53BFD294930D" otype="Entity" vid="9138C818-BF05-9D41-9DE9-67486404E797">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="199" y="106" width="123" height="186"/>
+</OView>
+</objectViews>
+</Diagram>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_20" directorySegmentName="seg_0" id="B03A6929-0817-83B3-68CA-F5902FDA3F1C">
+<createdBy>kraven</createdBy>
+<createdTime>2020-11-26 11:00:05 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>zawiera</nameOnSource>
+<nameOnTarget>jest zawierany</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>57A0A3F0-915B-D4C3-43BD-D319F30096EB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D592AF3A-4AB7-F18E-FA03-F707CB9BCB71</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
