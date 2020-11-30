@@ -35,7 +35,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="data_konca" id="6E2C4BA4-482B-D88A-3CA7-232B2F6AAE9B">
+<Attribute name="data_oddania" id="6E2C4BA4-482B-D88A-3CA7-232B2F6AAE9B">
 <createdBy>kraven</createdBy>
 <createdTime>2020-11-21 18:05:41 UTC</createdTime>
 <ownerDesignName>UMLtest</ownerDesignName>
@@ -58,7 +58,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id_uzyt" id="89F707BF-E08A-7C94-A83E-CF7F41EAB325">
+<Attribute name="id_uzytkownika" id="89F707BF-E08A-7C94-A83E-CF7F41EAB325">
 <createdBy>kraven</createdBy>
 <createdTime>2020-11-21 18:03:03 UTC</createdTime>
 <generatorID>A8C1D8DA-0E97-83A8-9907-A6C4D08A9867</generatorID>
@@ -67,6 +67,28 @@
 <item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
 </engineerTo>
 <referedAttribute>278ECEF4-2E41-3550-AD5D-6B84BBDD1C22</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="wartosc_kary" id="10BDD80C-7910-50CA-F6F9-F6B7BFEFE804">
+<createdBy>wojtek</createdBy>
+<createdTime>2020-11-30 15:47:24 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="kara_splacona" id="47960D1A-A7A2-0B7D-C071-2F1284F16315">
+<createdBy>wojtek</createdBy>
+<createdTime>2020-11-30 15:47:49 UTC</createdTime>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -83,6 +105,7 @@
 <usedAttributes>
 <attributeRef>B29EBD51-298D-33E0-BD38-119E9D787246</attributeRef>
 <attributeRef>89F707BF-E08A-7C94-A83E-CF7F41EAB325</attributeRef>
+<attributeRef>4A449422-9241-11BB-19BD-7C188133247E</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

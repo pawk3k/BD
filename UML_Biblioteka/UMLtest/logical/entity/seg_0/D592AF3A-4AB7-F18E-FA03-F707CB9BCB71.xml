@@ -47,6 +47,19 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="nr_polki" id="9B11EAB6-25F4-9526-FE5A-74B10F959329">
+<createdBy>wojtek</createdBy>
+<createdTime>2020-11-30 15:45:30 UTC</createdTime>
+<generatorID>B03A6929-0817-83B3-68CA-F5902FDA3F1C</generatorID>
+<ownerDesignName>UMLtest</ownerDesignName>
+<engineerTo>
+<item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>C36E3FCB-4F63-DB21-8873-C359387B2BD2</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="0EAAC278-4ACD-EE3C-B21C-B881EFC7F841" name="Egzemplarz PK">

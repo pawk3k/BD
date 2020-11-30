@@ -8,8 +8,8 @@
 </engineerTo>
 <sourcePk>67969335-536B-80FE-4C45-19F1783F1AF4</sourcePk>
 <identifying>true</identifying>
-<nameOnSource>posiaida</nameOnSource>
-<nameOnTarget>jest posiadany</nameOnTarget>
+<nameOnSource>posiada</nameOnSource>
+<nameOnTarget>jest kopia</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

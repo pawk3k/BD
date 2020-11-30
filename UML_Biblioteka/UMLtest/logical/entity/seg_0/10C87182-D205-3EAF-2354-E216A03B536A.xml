@@ -56,7 +56,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id_uzyt" id="C345CA17-92E4-3394-0A89-E3C69586DB79">
+<Attribute name="id_uzytkownika" id="C345CA17-92E4-3394-0A89-E3C69586DB79">
 <createdBy>kraven</createdBy>
 <createdTime>2020-11-21 18:04:32 UTC</createdTime>
 <generatorID>32346559-F93F-93F0-91A8-E9F84BA2D979</generatorID>
@@ -93,6 +93,8 @@
 <usedAttributes>
 <attributeRef>C345CA17-92E4-3394-0A89-E3C69586DB79</attributeRef>
 <attributeRef>B452B461-92CD-F5C1-44DB-FA47646CF989</attributeRef>
+<attributeRef>DC344900-32DA-08C8-FB39-08090B1422C9</attributeRef>
+<attributeRef>E52067A3-F914-885F-7870-DAE282C98429</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

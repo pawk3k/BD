@@ -15,7 +15,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id_uzyt" id="278ECEF4-2E41-3550-AD5D-6B84BBDD1C22">
+<Attribute name="id_uzytkownika" id="278ECEF4-2E41-3550-AD5D-6B84BBDD1C22">
 <createdBy>kraven</createdBy>
 <createdTime>2020-11-20 15:05:27 UTC</createdTime>
 <ownerDesignName>UMLtest</ownerDesignName>
