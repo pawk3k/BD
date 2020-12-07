@@ -55,7 +55,6 @@
 <engineerTo>
 <item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <referedAttribute>C36E3FCB-4F63-DB21-8873-C359387B2BD2</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>

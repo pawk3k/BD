@@ -11,7 +11,7 @@
 <nameOnSource>zawiera</nameOnSource>
 <nameOnTarget>znajduje sie na</nameOnTarget>
 <optionalSource>true</optionalSource>
-<optionalTarget>true</optionalTarget>
+<optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>57A0A3F0-915B-D4C3-43BD-D319F30096EB</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>

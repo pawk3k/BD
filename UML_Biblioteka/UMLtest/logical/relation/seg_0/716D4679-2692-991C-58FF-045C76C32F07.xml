@@ -7,7 +7,6 @@
 <item key="33A219CD-91D7-8147-61A4-C861A97DEE07" value="true"/>
 </engineerTo>
 <sourcePk>67969335-536B-80FE-4C45-19F1783F1AF4</sourcePk>
-<targetPk>63D33032-2D80-C7F1-941C-6EE7A60C4034</targetPk>
 <identifying>false</identifying>
 <nameOnSource>autorstwa</nameOnSource>
 <nameOnTarget>jest autorem</nameOnTarget>
