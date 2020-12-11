@@ -90,3 +90,32 @@ CREATE TABLE Wynajem(
    PRIMARY KEY(data, godz_rozpoczecia)
 );
 
+
+CREATE BITMAP INDEX eg_po_regal_bmp_idx
+ON
+    Regaly(kod_regalu)
+FROM Egzemplarze e, Polki p, Regaly r
+WHERE e.nr_polki = p.nr_polki AND p.kod_regalu = r.kod_regalu;
+
+
+--Sort
+CREATE INDEX au_nazwisko_idx
+ON Autorzy(nazwisko DESC);
+--Foreing Key
+CREATE INDEX eg_isbn_idx ON Egzemplarze(isbn);
+CREATE INDEX eg_numer_polki_idx ON Egzemplarze(nr_polki);
+
+CREATE INDEX wyp_isbn_idx ON Wypozyczenia(isbn);
+CREATE INDEX wyp_id_uzytkownika_idx ON Wypozyczenia(id_uzytkownika);
+
+CREATE  index  wyn_id_uzytkownika_idx ON WYNAJEM(id_uzytkownika);
+CREATE  index  wyn_id_sali_idx ON WYNAJEM(id_sali);
+
+CREATE INDEX pu_isbn_idx ON Publikacje(isbn);
+CREATE INDEX po_kod_regulu_idx ON Polki (kod_regalu);
+CREATE BITMAP INDEX pu_typ_bmp_idx ON Publikacje(typ);
+--Laczenie
+CREATE BITMAP INDEX eg_pub_idx
+ON Publikacje(tytul)
+FROM Egzemplarze e, Publikacje p
+WHERE e.isbn = p.isbn;
