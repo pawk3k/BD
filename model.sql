@@ -70,7 +70,7 @@ CREATE TABLE Wypozyczenia(
    data_startu DATE PRIMARY KEY,
    deadline DATE NOT NULL,
    data_oddania DATE,
-   wartosc_kary NUMBER(5,2) CHECK(wartosc_kary > 0),
+   wartosc_kary NUMBER(5,2) CHECK(wartosc_kary >= 0),
    czy_splacona NUMBER(1,0) CHECK(czy_splacona in (0, 1)),
    CHECK(deadline >= data_startu),
    CHECK(data_oddania >= data_startu)

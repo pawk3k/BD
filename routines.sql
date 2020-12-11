@@ -58,7 +58,8 @@ BEGIN
         dbms_output.put_line('Egzemplarz nie był wypożyczony');
     ELSE 
         update wypozyczenia w
-        set DATA_ODDANIA = CURRENT_DATE
+        set DATA_ODDANIA = CURRENT_DATE,
+        w.wartosc_kary = ObliczKare(w.data_startu, CURRENT_DATE)
         where w.id_uzytkownika = id_u 
         and w.isbn=isbn
         and w.id_egzemplarza = id_e 
@@ -74,14 +75,18 @@ RETURN NUMBER
     IS
     vResult NUMBER(4,2);
 BEGIN
-SELECT data_startu - data_konca DAYS into vResult FROM DUAL;
-return vResult * 0.20;
+SELECT data_konca - data_startu DAYS into vResult FROM DUAL;
+if vResult <= 14 then
+    return 0;
+else
+    return (vResult-14) * 0.20;
+end if;
 END;
 /
 
-CREATE OR REPLACE PROCEDURE WynajmijSale(      id_s Sale.id_sali%TYPE,
-                                               id_u Uzytkownicy.id_uzytkownika%TYPE,
-                                               n_godz NUMBER)
+CREATE OR REPLACE PROCEDURE WynajmijSale(id_s Sale.id_sali%TYPE,
+                                         id_u Uzytkownicy.id_uzytkownika%TYPE,
+                                         n_godz NUMBER)
 IS
     cw NUMBER(1);
     tmin NUMBER(4);
@@ -102,41 +107,9 @@ BEGIN
     END IF;
 END WynajmijSale;
 /
-CREATE OR REPLACE PROCEDURE OddajSale(      id_s Sale.id_sali%TYPE,
-                                               id_u Uzytkownicy.id_uzytkownika%TYPE,
-                                               n_godz NUMBER)
-IS
-    cw NUMBER(1);
-    tmin NUMBER(4);
-    tmin_beg NUMBER(4);
-    data_wynajmu DATE;
-    data DATE;
-BEGIN
-    SELECT count(*) INTO cw FROM Wynajem w 
-    WHERE w.id_sali = id_s 
-    AND godz_zakonczenia IS NULL
-    AND id_uzytkownika=id_u;
-    IF cw < 1 THEN
-        dbms_output.put_line('Sala nie jest aktualnie zajęta przez tego klienta');
-    ELSE
-        tmin := current_tmin();
-        select godz_rozpoczecia, w.data into tmin_beg, data_wynajmu from Wynajem w
-        where 
-        w.id_sali=id_s and w.id_uzytkownika=id_u and godz_zakonczenia IS NULL;
-        
-        if tmin < tmin_beg or data_wynajmu != CURRENT_DATE() then
-            tmin := 1439;
-        else
-            update Wynajem w
-            set godz_zakonczenia=tmin
-            where 
-            w.id_sali=id_s and w.id_uzytkownika=id_u and godz_zakonczenia IS NULL;
-        end if;
-    END IF;
-END OddajSale;
-/
-CREATE OR REPLACE PROCEDURE OddajSale(      id_s Sale.id_sali%TYPE,
-                                               id_u Uzytkownicy.id_uzytkownika%TYPE)
+
+CREATE OR REPLACE PROCEDURE OddajSale(id_s Sale.id_sali%TYPE,
+                                      id_u Uzytkownicy.id_uzytkownika%TYPE)
 IS
     cw NUMBER(1);
     tmin NUMBER(4);
@@ -205,12 +178,12 @@ END;
 /
 
 delete from Wypozyczenia;
-delete from Uzytkownicy;
 delete from Autorstwo;
 delete from Autorzy;
 delete from Egzemplarze;
 delete from Publikacje;
 delete from Wynajem;
+delete from Uzytkownicy;
 delete from Sale;
 
 insert into Autorzy(id_autora, nazwisko, imie)
@@ -236,3 +209,7 @@ begin
     lista := ListaAutorow(pad13(1));
     dbms_output.put_line(lista);
 end;
+/
+exec WypozyczEgzemplarz(pad13(1), 1, 'user1');
+update Wypozyczenia set data_startu=(CURRENT_DATE - 20);
+exec OddajEgzemplarz(pad13(1), 1, 'user1');
