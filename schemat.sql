@@ -298,23 +298,3 @@ BEGIN
    end if;
 END;
 /
-insert into Autorzy(id_autora, nazwisko, imie)
-values (1, 'Mickiewicz', NULL);
-insert into Autorzy(id_autora, nazwisko, imie, tytul_naukowy)
-values (2, 'Slowacki', 'Juliusz', 'prof.');
-insert into Publikacje(isbn, typ, tytul, gatunek)
-values (pad13(1), 'K', 'Ksiazka', 'fantastyka');
-insert into Egzemplarze(id_egzemplarza, isbn)
-values (1, pad13(1));
-insert into Autorstwo
-values (1, pad13(1));
-insert into Autorstwo
-values (2, pad13(1));
-insert into Uzytkownicy
-values ('user1', 'Adam', 'Nowak');
-insert into Sale(id_sali) values (1);
-
-exec WypozyczEgzemplarz(pad13(1), 1, 'user1');
-exec WypozyczEgzemplarz(pad13(1), 1, 'user1'); -- error OK
-exec OddajEgzemplarz(pad13(1), 1, 'user1');
-exec OddajEgzemplarz(pad13(1), 1, 'user1'); -- erro OK
