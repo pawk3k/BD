@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
-import StateTextFields from "../registration/my-form"
+import StateTextFields from "../registration/user-register"
 import Rents from "../rents/rents"
 import { Link } from "react-router-dom"
 import { Button } from "@material-ui/core"
@@ -55,6 +55,7 @@ export default function SimpleTabs() {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
   }
@@ -96,7 +97,7 @@ export default function SimpleTabs() {
         </p>
         {/* <BookmarkComponent /> */}
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel  value={value} index={1}>
         <StateTextFields />
       </TabPanel>
       <TabPanel value={value} index={2}>
