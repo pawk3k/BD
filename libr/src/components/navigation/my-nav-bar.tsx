@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import StateTextFields from "../registration/user-register"
 import Rents from "../rents/rents"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { Button } from "@material-ui/core"
 
 interface TabPanelProps {
@@ -46,7 +46,7 @@ function a11yProps(index: any) {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
-    
+
     backgroundColor: theme.palette.background.paper,
   },
 }))
@@ -55,11 +55,9 @@ export default function SimpleTabs() {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
   }
-
   return (
     <div className={classes.root}>
       <AppBar position="static" color="transparent">
@@ -97,7 +95,7 @@ export default function SimpleTabs() {
         </p>
         {/* <BookmarkComponent /> */}
       </TabPanel>
-      <TabPanel  value={value} index={1}>
+      <TabPanel value={value} index={1}>
         <StateTextFields />
       </TabPanel>
       <TabPanel value={value} index={2}>

@@ -2,6 +2,7 @@ import React, { useRef } from "react"
 import TextField from "@material-ui/core/TextField"
 import { Typography, Paper, Grid, Button, FormControl } from "@material-ui/core"
 import { useForm, Controller } from "react-hook-form"
+
 export default function UserRegister() {
   const { handleSubmit, control, errors: fieldsErrors, watch } = useForm()
   const onSubmit = (data: any) => {
@@ -9,30 +10,6 @@ export default function UserRegister() {
   }
   const password = useRef({})
   password.current = watch("password1", "")
-  // <Controller
-  //                 name="email"
-  //                 as={
-  //                   <TextField
-  //                     id="email"
-  //                     helperText={
-  //                       fieldsErrors.email ? fieldsErrors.email.message : null
-  //                     }
-  //                     variant="outlined"
-  //                     label="Email"
-  //                     error={fieldsErrors.email}
-  //                   />
-  //                 }
-  //                 control={control}
-  //                 defaultValue=""
-  //                 rules={{
-  //                   required: "Required",
-  //                   pattern: {
-  //                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-  //                     message: "invalid email address",
-  //                   },
-  //                 }}
-  //               />
-
   return (
     <div style={{ maxWidth: 600, margin: "auto" }}>
       <Paper
