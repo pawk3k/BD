@@ -110,7 +110,7 @@ export default function SimpleTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Aktualne Wypozyczone
-        <Rents />
+        {/* <Rents /> */}
       </TabPanel>
     </div>
   )

@@ -10,6 +10,7 @@ import {
 } from "react-router-dom"
 import Reservation from "./components/revervation/reservation"
 import Login from "./components/login/login"
+import Rents from "./components/rents/rents"
 interface ParamTypes {
   bid: string
 }
@@ -34,6 +35,9 @@ function App() {
           <div className="App">
             <Route path="/">
               <CenteredTabs />
+            </Route>
+            <Route path="/rents">
+              <Rents />
             </Route>
             <Route exact path="/lol">
               <Reservation />
