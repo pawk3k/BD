@@ -2,11 +2,20 @@ import React, { useRef } from "react"
 import TextField from "@material-ui/core/TextField"
 import { Typography, Paper, Grid, Button, FormControl } from "@material-ui/core"
 import { useForm, Controller } from "react-hook-form"
+import axios from "axios"
 
 export default function UserRegister() {
   const { handleSubmit, control, errors: fieldsErrors, watch } = useForm()
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const onSubmit = async (data: any) => {
+    await axios
+      .post("http://localhost:8081/api/Uzytkownicy/save", data)
+      .then((resp) => console.log(resp))
+      .catch((m) => alert(m))
+
+    const data2 = await axios
+      .get("http://localhost:8081/api/Uzytkownicy/max")
+      .then((resp) => alert("Your 📚 id is :" + resp.data))
+      .catch((message) => alert(message))
   }
   const password = useRef({})
   password.current = watch("password1", "")
@@ -27,11 +36,11 @@ export default function UserRegister() {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <Controller
-                  name="name"
+                  name="imie"
                   as={
                     <TextField
                       fullWidth
-                      id="name"
+                      id="imie"
                       helperText={
                         fieldsErrors.name ? fieldsErrors.name.message : null
                       }
@@ -53,11 +62,11 @@ export default function UserRegister() {
               </Grid>
               <Grid item xs={6}>
                 <Controller
-                  name="surname"
+                  name="nazwisko"
                   as={
                     <TextField
                       fullWidth
-                      id="surname"
+                      id="nazwisko"
                       helperText={
                         fieldsErrors.surname
                           ? fieldsErrors.surname.message
@@ -79,7 +88,7 @@ export default function UserRegister() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Controller
                   name="email"
                   as={
@@ -157,12 +166,12 @@ export default function UserRegister() {
                       "The passwords do not match",
                   }}
                 />
-              </Grid>
+              </Grid>*/}
               <Grid item xs={12}>
                 <Button variant="contained" color="primary" type="submit">
                   Submit
                 </Button>
-              </Grid>
+              </Grid>{" "}
             </Grid>
           </FormControl>
         </form>

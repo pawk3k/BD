@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import StateTextFields from "../registration/user-register"
 import Rents from "../rents/rents"
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Button } from "@material-ui/core"
 
 interface TabPanelProps {
@@ -69,10 +69,20 @@ export default function SimpleTabs() {
           indicatorColor="primary"
           centered
         >
-          <Tab label="Main Page" {...a11yProps(0)} />
-          <Tab label="registration" {...a11yProps(1)} />
-          <Tab label="Wypozyczenia" {...a11yProps(2)} />
-          <Tab label="Admin" {...a11yProps(3)} />
+          <Tab
+            label="Main Page"
+            {...a11yProps(0)}
+            to="/main"
+            component={Link}
+          />
+          <Tab
+            label="registration"
+            {...a11yProps(1)}
+            to="/register"
+            component={Link}
+          />
+          <Tab label="Wypozyczenia" to="/rents" component={Link} />
+          <Tab label="Admin" {...a11yProps(3)} to="/admin" component={Link} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

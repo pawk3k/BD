@@ -9,7 +9,7 @@ import {
   useParams,
 } from "react-router-dom"
 import Reservation from "./components/revervation/reservation"
-
+import Login from "./components/login/login"
 interface ParamTypes {
   bid: string
 }
@@ -28,7 +28,7 @@ const Comp = () => {
 }
 function App() {
   return (
-    <div style={{backgroundColor:"gray"}}>
+    <div style={{ backgroundColor: "gray" }}>
       <Router>
         <Switch>
           <div className="App">
@@ -39,6 +39,9 @@ function App() {
               <Reservation />
             </Route>
             <Route exact path="/book/:bid" component={Comp} />
+            <Route path="/login">
+              <Login />
+            </Route>
 
             {/* <Form /> */}
           </div>
