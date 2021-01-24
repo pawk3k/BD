@@ -1,62 +1,71 @@
 import React, { useState } from "react"
-import Button from "@material-ui/core/Button"
 import EnhancedTable from "./history-table"
-import { Grid } from "@material-ui/core"
+import TextField from "@material-ui/core/TextField"
+import { Typography, Paper, Grid, Button, FormControl } from "@material-ui/core"
+import { useForm, Controller } from "react-hook-form"
+import axios from "axios"
+
 export default function Rents() {
   const [isLoggedin, setIsLoggedin] = useState(false)
 
-  const handleClick = () => {
+  const { handleSubmit, control, errors: fieldsErrors, watch } = useForm()
+  const onSubmit = (data: unknown) => {
+    alert(data)
     setIsLoggedin(!isLoggedin)
   }
 
   return (
-    <div>
-      {!isLoggedin ? (
-        <div>
-          <Grid container>
-            <Grid item xs={12}>
-              <Controller
-                name="nazwisko"
-                as={
-                  <TextField
-                    fullWidth
-                    id="nazwisko"
-                    helperText={
-                      fieldsErrors.surname ? fieldsErrors.surname.message : null
-                    }
-                    variant="outlined"
-                    label="Nazwisko"
-                    error={fieldsErrors.surname}
-                  />
-                }
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Required",
-                  pattern: {
-                    value: /^[A-Z]{1}[a-z]{1,}$/,
-                    message: "Niepoprawne nazwisko",
-                  },
-                }}
-              />
+    <div style={{ maxWidth: 600, margin: "auto" }}>
+      <Paper
+        style={{
+          padding: "15px",
+          marginTop: "10vh",
+          borderRadius: "50px",
+          boxShadow: "2vh 2vh 2vh  blue",
+          border: "1vh",
+        }}
+      >
+        <Typography style={{ paddingBottom: "2vh" }}>Rejestracja</Typography>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          <FormControl fullWidth variant="outlined">
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Controller
+                  name="identification"
+                  as={
+                    <TextField
+                      fullWidth
+                      id="identification"
+                      helperText={
+                        fieldsErrors.identification
+                          ? fieldsErrors.identification.message
+                          : null
+                      }
+                      variant="outlined"
+                      label="identification"
+                      error={fieldsErrors.identification}
+                    />
+                  }
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Required",
+                    pattern: {
+                      value: /^\d+$/,
+                      message: "Niepoprawne id",
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Button variant="contained" color="primary" type="submit">
+                  Submit
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setIsLoggedin(!isLoggedin)}
-              >
-                Log in
-              </Button>
-              <div>You have to log in to see content</div>
-            </Grid>
-          </Grid>
-        </div>
-      ) : (
-        <div>
-          <EnhancedTable />
-        </div>
-      )}
+          </FormControl>
+        </form>
+      </Paper>
     </div>
   )
 }

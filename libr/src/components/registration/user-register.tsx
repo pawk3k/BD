@@ -42,11 +42,11 @@ export default function UserRegister() {
                       fullWidth
                       id="imie"
                       helperText={
-                        fieldsErrors.name ? fieldsErrors.name.message : null
+                        fieldsErrors.imie ? fieldsErrors.imie.message : null
                       }
                       variant="outlined"
                       label="Imie"
-                      error={fieldsErrors.name}
+                      error={fieldsErrors.imie}
                     />
                   }
                   control={control}
@@ -68,13 +68,13 @@ export default function UserRegister() {
                       fullWidth
                       id="nazwisko"
                       helperText={
-                        fieldsErrors.surname
-                          ? fieldsErrors.surname.message
+                        fieldsErrors.nazwisko
+                          ? fieldsErrors.nazwisko.message
                           : null
                       }
                       variant="outlined"
                       label="Nazwisko"
-                      error={fieldsErrors.surname}
+                      error={fieldsErrors.nazwisko}
                     />
                   }
                   control={control}
@@ -88,90 +88,11 @@ export default function UserRegister() {
                   }}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <Controller
-                  name="email"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="email"
-                      helperText={
-                        fieldsErrors.email ? fieldsErrors.email.message : null
-                      }
-                      variant="outlined"
-                      label="email"
-                      error={fieldsErrors.email}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "invalid email",
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <Controller
-                  name="password1"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="password1"
-                      helperText={
-                        fieldsErrors.password1
-                          ? fieldsErrors.password1.message
-                          : null
-                      }
-                      variant="outlined"
-                      label="Haslo"
-                      error={fieldsErrors.password1}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    minLength: 8,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <Controller
-                  name="password2"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="password2"
-                      helperText={
-                        fieldsErrors.password2
-                          ? fieldsErrors.password2.message
-                          : null
-                      }
-                      variant="outlined"
-                      label="Powtorz haslo"
-                      error={fieldsErrors.password2}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    minLength: 8,
-                    validate: (value) =>
-                      value === password.current ||
-                      "The passwords do not match",
-                  }}
-                />
-              </Grid>*/}
               <Grid item xs={12}>
                 <Button variant="contained" color="primary" type="submit">
                   Submit
                 </Button>
-              </Grid>{" "}
+              </Grid>
             </Grid>
           </FormControl>
         </form>
