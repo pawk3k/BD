@@ -1,45 +1,45 @@
-import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import React from "react"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 // import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Table from "@material-ui/core/Table";
-import { Button } from "@material-ui/core";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import Table from "@material-ui/core/Table"
+import { Button } from "@material-ui/core"
+import TableBody from "@material-ui/core/TableBody"
+import TableCell from "@material-ui/core/TableCell"
+import TableContainer from "@material-ui/core/TableContainer"
+import TableHead from "@material-ui/core/TableHead"
+import TableRow from "@material-ui/core/TableRow"
 // import Link from "@material-ui/core/Link";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import SimpleModal from "../autor-modal/autor-modal";
-import LibraryState from "../library-state/library-state";
-import { Link } from "react-router-dom";
+import TableSortLabel from "@material-ui/core/TableSortLabel"
+import SimpleModal from "../autor-modal/autor-modal"
+import LibraryState from "../library-state/library-state"
+import { Link, useParams } from "react-router-dom"
 
 interface Data {
-  name: string;
-  autor: string;
-  position: string;
+  name: string
+  autor: string
+  position: string
 }
 
 function createData(name: string, autor: string, position: string): Data {
-  return { name, autor, position };
+  return { name, autor, position }
 }
 
 const rows = [
   createData("Pan tadeusz", "Ms", "A1"),
   createData("Norwegian Wood", "Ks", "C2"),
-];
+]
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
-    return -1;
+    return -1
   }
   if (b[orderBy] > a[orderBy]) {
-    return 1;
+    return 1
   }
-  return 0;
+  return 0
 }
 
-type Order = "asc" | "desc";
+type Order = "asc" | "desc"
 
 function getComparator<Key extends keyof any>(
   order: Order,
@@ -50,24 +50,24 @@ function getComparator<Key extends keyof any>(
 ) => number {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    : (a, b) => -descendingComparator(a, b, orderBy)
 }
 
 function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number])
   stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
+    const order = comparator(a[0], b[0])
+    if (order !== 0) return order
+    return a[1] - b[1]
+  })
+  return stabilizedThis.map((el) => el[0])
 }
 
 interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
-  label: string;
-  numeric: boolean;
+  disablePadding: boolean
+  id: keyof Data
+  label: string
+  numeric: boolean
 }
 
 const headCells: HeadCell[] = [
@@ -80,28 +80,28 @@ const headCells: HeadCell[] = [
   { id: "autor", numeric: true, disablePadding: false, label: "autor" },
   { id: "position", numeric: true, disablePadding: false, label: "pozycja" },
   { id: "position", numeric: true, disablePadding: false, label: "czas_konca" },
-];
+]
 
 interface EnhancedTableProps {
-  classes: ReturnType<typeof useStyles>;
-  numSelected: number;
+  classes: ReturnType<typeof useStyles>
+  numSelected: number
   onRequestSort: (
     event: React.MouseEvent<unknown>,
     property: keyof Data
-  ) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
+  ) => void
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void
+  order: Order
+  orderBy: string
+  rowCount: number
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { classes, order, orderBy, onRequestSort } = props;
+  const { classes, order, orderBy, onRequestSort } = props
   const createSortHandler = (property: keyof Data) => (
     event: React.MouseEvent<unknown>
   ) => {
-    onRequestSort(event, property);
-  };
+    onRequestSort(event, property)
+  }
 
   return (
     <TableHead>
@@ -130,7 +130,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         ))}
       </TableRow>
     </TableHead>
-  );
+  )
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -157,75 +157,80 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 1,
     },
   })
-);
+)
+interface TableProps {
+  userID: string
+}
 
 export default function EnhancedTable() {
-  const classes = useStyles();
-  const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data>("autor");
-  const [selected, setSelected] = React.useState<string[]>([]);
-  const [page] = React.useState(0);
-  const [dense] = React.useState(false);
-  const [rowsPerPage] = React.useState(5);
-  const [open, setOpen] = React.useState(false);
-  const [isOpenLibrary, setOpenLibrary] = React.useState(false);
+  const { userID } = useParams<TableProps>()
+  const classes = useStyles()
+  const [order, setOrder] = React.useState<Order>("asc")
+  const [orderBy, setOrderBy] = React.useState<keyof Data>("autor")
+  const [selected, setSelected] = React.useState<string[]>([])
+  const [page] = React.useState(0)
+  const [dense] = React.useState(false)
+  const [rowsPerPage] = React.useState(5)
+  const [open, setOpen] = React.useState(false)
+  const [isOpenLibrary, setOpenLibrary] = React.useState(false)
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleCloseLib = () => {
-    setOpenLibrary(false);
-  };
+    setOpenLibrary(false)
+  }
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof Data
   ) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
-  };
+    const isAsc = orderBy === property && order === "asc"
+    setOrder(isAsc ? "desc" : "asc")
+    setOrderBy(property)
+  }
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
+      const newSelecteds = rows.map((n) => n.name)
+      setSelected(newSelecteds)
+      return
     }
-    setSelected([]);
-  };
+    setSelected([])
+  }
 
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: string[] = [];
+    const selectedIndex = selected.indexOf(name)
+    let newSelected: string[] = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, name)
     } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
+      newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
+      newSelected = newSelected.concat(selected.slice(0, -1))
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1)
-      );
+      )
     }
 
-    setSelected(newSelected);
-  };
+    setSelected(newSelected)
+  }
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (name: string) => selected.indexOf(name) !== -1
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
 
   return (
     <div className={classes.root}>
+      <div>ID: {userID}</div>
       <TableContainer>
         <Table
           className={classes.table}
@@ -246,8 +251,8 @@ export default function EnhancedTable() {
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
-                const isItemSelected = isSelected(row.name);
-                const labelId = `enhanced-table-checkbox-${index}`;
+                const isItemSelected = isSelected(row.name)
+                const labelId = `enhanced-table-checkbox-${index}`
 
                 return (
                   <TableRow
@@ -277,10 +282,12 @@ export default function EnhancedTable() {
                       </Button>
                     </TableCell>{" "}
                     <TableCell align="right">
-                      <Button onClick={() => setOpenLibrary(true)}>20-06-1999</Button>
+                      <Button onClick={() => setOpenLibrary(true)}>
+                        20-06-1999
+                      </Button>
                     </TableCell>
                   </TableRow>
-                );
+                )
               })}
             {emptyRows > 0 && (
               <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
@@ -293,5 +300,5 @@ export default function EnhancedTable() {
       <SimpleModal open={open} handleClose={handleClose} />
       <LibraryState open={isOpenLibrary} handleClose={handleCloseLib} />
     </div>
-  );
+  )
 }

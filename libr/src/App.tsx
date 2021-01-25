@@ -8,13 +8,26 @@ import {
   Route,
   useParams,
 } from "react-router-dom"
+// import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+
 import Reservation from "./components/revervation/reservation"
 import Login from "./components/login/login"
 import Rents from "./components/rents/rents"
+import MainRouter from "./components/main-router/main-router"
 interface ParamTypes {
   bid: string
 }
-
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#630360",
+    },
+    secondary: {
+      main: "#E3E",
+    },
+  },
+})
 const Comp = () => {
   const { bid } = useParams<ParamTypes>()
   return (
@@ -29,29 +42,9 @@ const Comp = () => {
 }
 function App() {
   return (
-    <div style={{ backgroundColor: "gray" }}>
-      <Router>
-        <Switch>
-          <div className="App">
-            <Route path="/">
-              <CenteredTabs />
-            </Route>
-            <Route path="/rents">
-              <Rents />
-            </Route>
-            <Route exact path="/lol">
-              <Reservation />
-            </Route>
-            <Route exact path="/book/:bid" component={Comp} />
-            <Route path="/login">
-              <Login />
-            </Route>
-
-            {/* <Form /> */}
-          </div>
-        </Switch>
-      </Router>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <MainRouter />
+    </MuiThemeProvider>
   )
 }
 

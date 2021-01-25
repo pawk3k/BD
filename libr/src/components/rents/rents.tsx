@@ -12,8 +12,10 @@ import {
   useParams,
   useLocation,
   useRouteMatch,
+  useHistory,
 } from "react-router-dom"
 import { getByLabelText } from "@testing-library/react"
+import UserComponent from "../user-component/user-component"
 interface dataType {
   identification: string
 }
@@ -23,7 +25,15 @@ interface ParamTypes {
 }
 function Topic() {
   const { topicId } = useParams<ParamTypes>()
-  return <h3>Requested topic ID: {topicId}</h3>
+  const history = useHistory()
+  return (
+    <div>
+      <div>
+        <button onClick={() => history.goBack()}>back</button>
+      </div>
+      <h3>Requested topic ID: {topicId}</h3>
+    </div>
+  )
 }
 export default function Rents() {
   const location = useLocation()
@@ -41,7 +51,9 @@ export default function Rents() {
   const watchName = watch("identification")
 
   useEffect(() => {
-    if (location.pathname !== "/rents") unmutable.current = true
+    if (location.pathname !== "/rents" && location.pathname !== "/rents/")
+      unmutable.current = true
+    else unmutable.current = false
     console.log(location)
     setIsLoggedin(!isLoggedin)
   }, [location])
@@ -113,11 +125,13 @@ export default function Rents() {
           </form>
         </Paper>
       ) : (
-        <div>keks</div>
+        <div>kek</div>
       )}
       <Switch>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic />
+        <Route path={`${match.path}/:userID`}>
+          <UserComponent />
+          {/* <EnhancedTable /> */}
+          {/* <Topic /> */}
         </Route>
         <Route path={match.path}>
           <h3>Please select a topic.</h3>

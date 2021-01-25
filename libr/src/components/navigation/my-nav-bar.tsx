@@ -64,8 +64,10 @@ export default function SimpleTabs() {
         <Tabs
           value={value}
           onChange={handleChange}
+          color="secondary"
           aria-label="simple tabs example"
           textColor="primary"
+          
           indicatorColor="primary"
           centered
         >
