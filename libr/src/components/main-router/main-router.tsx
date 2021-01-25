@@ -13,6 +13,8 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import Reservation from "../revervation/reservation"
 import Login from "../login/login"
 import Rents from "../rents/rents"
+import HomeComponent from "../navigation/home-component"
+import FindBook from "../find-book/find-book"
 
 const Comp = () => {
   return (
@@ -36,6 +38,12 @@ export default function MainRouter() {
             </Route>
             <Route path="/rents">
               <Rents />
+            </Route>
+            <Route path="/main">
+              <HomeComponent />
+            </Route>
+            <Route path="/find">
+              <FindBook />
             </Route>
             <Route exact path="/lol">
               <Reservation />

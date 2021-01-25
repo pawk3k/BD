@@ -67,7 +67,6 @@ export default function SimpleTabs() {
           color="secondary"
           aria-label="simple tabs example"
           textColor="primary"
-          
           indicatorColor="primary"
           centered
         >
@@ -87,32 +86,13 @@ export default function SimpleTabs() {
           <Tab label="Admin" {...a11yProps(3)} to="/admin" component={Link} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <p>Witamy na naszej stronie uzytkowniku</p>
-        <p>Dostepne opcje to:</p>
-        <p>
-          <Button color="primary" variant="contained">
-            Wyszukaj Artykul
-          </Button>
-        </p>
-        <p>
-          <Button color="primary" variant="contained">
-            Historia Wypozyczen
-          </Button>
-        </p>
-        <p>
-          <Button color="primary" variant="contained">
-            Rezerwacje Sal
-          </Button>
-        </p>
-        {/* <BookmarkComponent /> */}
-      </TabPanel>
+      <TabPanel value={value} index={0}></TabPanel>
       <TabPanel value={value} index={1}>
         <StateTextFields />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Aktualne Wypozyczone
-        {/* <Rents /> */}
+        {/* <Rents /> */} 
       </TabPanel>
     </div>
   )
