@@ -15,6 +15,7 @@ import Login from "../login/login"
 import Rents from "../rents/rents"
 import HomeComponent from "../navigation/home-component"
 import FindBook from "../find-book/find-book"
+import AdminWorkspace from "../admin-panel/admin-workspace"
 
 const Comp = () => {
   return (
@@ -47,6 +48,9 @@ export default function MainRouter() {
             </Route>
             <Route exact path="/lol">
               <Reservation />
+            </Route>
+            <Route path="/admin">
+              <AdminWorkspace />
             </Route>
             <Route exact path="/book/:bid" component={Comp} />
             <Route path="/login">

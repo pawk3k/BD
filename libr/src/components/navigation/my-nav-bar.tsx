@@ -9,6 +9,7 @@ import StateTextFields from "../registration/user-register"
 import Rents from "../rents/rents"
 import { Link } from "react-router-dom"
 import { Button } from "@material-ui/core"
+import AdminWorskpace from "../admin-panel/admin-workspace"
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -82,7 +83,12 @@ export default function SimpleTabs() {
             to="/register"
             component={Link}
           />
-          <Tab label="Wypozyczenia" to="/rents" component={Link} />
+          <Tab
+            label="Wypozyczenia"
+            {...a11yProps(2)}
+            to="/rents"
+            component={Link}
+          />
           <Tab label="Admin" {...a11yProps(3)} to="/admin" component={Link} />
         </Tabs>
       </AppBar>
@@ -92,8 +98,9 @@ export default function SimpleTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Aktualne Wypozyczone
-        {/* <Rents /> */} 
+        {/* <Rents /> */}
       </TabPanel>
+      <TabPanel value={value} index={3}></TabPanel>
     </div>
   )
 }

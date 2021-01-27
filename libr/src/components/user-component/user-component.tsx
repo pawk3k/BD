@@ -19,11 +19,9 @@ interface TableProps {
 }
 
 export default function UserComponent() {
-  const { userID } = useParams<TableProps>()
   const match = useRouteMatch()
   return (
     <div>
-      kek{userID}
       <div>
         <ButtonGroup variant="contained" color="primary">
           <Button to={`${match.url}/rooms`} component={Link}>
