@@ -24,6 +24,7 @@ import {
 import { getByLabelText } from "@testing-library/react"
 import UserComponent from "../user-component/user-component"
 import BookRents from "./book-rents"
+import BookAdmin from "./book-admin/book-admin"
 interface dataType {
   identification: string
 }
@@ -90,7 +91,7 @@ export default function AdminWorskpace() {
           <BookRents />
         </Route>
         <Route path={`${match.path}/bookAdmin`}>
-          <div>keak</div>
+          <BookAdmin />
         </Route>
       </Switch>
     </div>

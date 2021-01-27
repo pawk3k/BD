@@ -20,6 +20,24 @@ interface dataType {
   identification: string
 }
 export default function BookRents() {
+  const [state, setState] = React.useState<{
+    age: string | number
+    name: string
+  }>({
+    age: "",
+    name: "hai",
+  })
+
+  const handleChange = (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
+    const name = event.target.name as keyof typeof state
+    setState({
+      ...state,
+      [name]: event.target.value,
+    })
+  }
+
   const location = useLocation()
   const [isLoggedin, setIsLoggedin] = useState(false)
   const match = useRouteMatch()
