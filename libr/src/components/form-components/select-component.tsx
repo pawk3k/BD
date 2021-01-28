@@ -5,23 +5,20 @@ import Input from "@material-ui/core/Input"
 interface SelectComponentProps {
   control: any
   name: string
+  options: any[]
 }
 
 export const SelectComponent = (props: SelectComponentProps) => {
   // const { control, handleSubmit } = useForm()
-  const { control, name } = props
+  const { control, name, options } = props
   return (
     <div>
       <Controller
         name={name}
         placeholder={name}
         control={control}
-        options={[
-          { value: "K", label: "Ksiazka" },
-          { value: "A", label: "Artukul" },
-          { value: "C", label: "Czasopismo" },
-        ]}
         as={Select}
+        options={options}
       />
     </div>
   )

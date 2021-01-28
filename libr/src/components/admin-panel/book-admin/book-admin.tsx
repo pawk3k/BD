@@ -26,6 +26,8 @@ import {
 import { getByLabelText } from "@testing-library/react"
 import { SelectComponent } from "../../form-components/select-component"
 import TextFieldComponent from "../../form-components/text-field-component"
+import RegalSelect from "./regal-select"
+import PolkiSelect from "./polki-select"
 interface dataType {
   identification: string
   gatunek: string
@@ -57,7 +59,7 @@ export default function BookAdmin() {
   const [linkHref, setLink] = useState<string>("")
   const { handleSubmit, control, errors: fieldsErrors, watch } = useForm({})
   const watchName = watch("identification")
-
+  const watchRegal = watch("regal")
   const watchTyp = watch("typ")
   console.log(watchTyp)
   const onSubmit = (data: any) => {
@@ -133,7 +135,79 @@ export default function BookAdmin() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <SelectComponent control={control} name="typ" />
+                <SelectComponent
+                  control={control}
+                  name="typ"
+                  options={[
+                    { value: "K", label: "Ksiazka" },
+                    { value: "A", label: "Artukul" },
+                    { value: "C", label: "Czasopismo" },
+                  ]}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <RegalSelect name="regal" control={control} />
+              </Grid>
+              <Grid item xs={12}>
+                {watchRegal && (
+                  <PolkiSelect
+                    name="polki"
+                    control={control}
+                    kodRegalu={watchRegal.value}
+                  />
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Controller
+                  name="regal"
+                  as={
+                    <TextField
+                      fullWidth
+                      id="regal"
+                      helperText={
+                        fieldsErrors.regal ? fieldsErrors.regal.message : null
+                      }
+                      variant="outlined"
+                      label="regal"
+                      error={fieldsErrors.regal}
+                    />
+                  }
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Required",
+                    pattern: {
+                      value: /^\d+$/,
+                      message: "Niepoprawne regal",
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Controller
+                  name="regal"
+                  as={
+                    <TextField
+                      fullWidth
+                      id="regal"
+                      helperText={
+                        fieldsErrors.regal ? fieldsErrors.regal.message : null
+                      }
+                      variant="outlined"
+                      label="regal"
+                      error={fieldsErrors.regal}
+                    />
+                  }
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Required",
+                    pattern: {
+                      value: /^\d+$/,
+                      message: "Niepoprawne regal",
+                    },
+                  }}
+                />
               </Grid>
               <Grid item xs={12}>
                 {watchTyp && (
@@ -180,12 +254,12 @@ export default function BookAdmin() {
                       required: "Required",
                       pattern: {
                         value: /^\d+$/,
-                        message: "asd",
+                        message: "Blad",
                       },
                     }}
                   />
                 )}
-              </Grid>{" "}
+              </Grid>
               <Grid item xs={12}>
                 {every([!fieldsErrors.ISBN, !fieldsErrors.tytul]) && (
                   <Button color="primary" type="submit" variant="outlined">
