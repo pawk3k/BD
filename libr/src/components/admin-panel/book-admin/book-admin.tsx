@@ -32,6 +32,22 @@ interface dataType {
   identification: string
   gatunek: string
 }
+
+interface egzemplarzDataType {
+  isbn: number
+  idEgzemplarza: number | null
+  czyWypozyczony: boolean
+  pozycja: string
+}
+
+interface formSubmitType {
+  isbn: number
+  typ: string
+  tytul: string
+  gatunek?: string
+  temat?: string
+  publikacjeByIdCzasopisma: number
+}
 export default function BookAdmin() {
   const [state, setState] = React.useState<{
     age: string | number
@@ -63,8 +79,35 @@ export default function BookAdmin() {
   const watchTyp = watch("typ")
   console.log(watchTyp)
   const onSubmit = (data: any) => {
+    const sumbitDataPublication: formSubmitType = {
+      isbn: data.ISBN,
+      typ: data.typ.value,
+      tytul: data.tytul,
+      gatunek: data.gatunek !== undefined ? data.gatunek : null,
+      temat: data.temat !== undefined ? data.temat : null,
+      publikacjeByIdCzasopisma:
+        data.publikacjeByIdCzasopisma !== undefined
+          ? data.publikacjeByIdCzasopisma
+          : null,
+    }
+    const sumbitDataEgzemplarz: egzemplarzDataType = {
+      isbn: data.ISBN,
+      idEgzemplarza: null,
+      czyWypozyczony: false,
+      pozycja: data.polki.value + data.regal.value,
+    }
+
+    axios
+      .post("http://localhost:8081/api/Publikacje/save", sumbitDataPublication)
+      .then((resp) => console.log(resp))
+      .catch((m) => alert(m))
+    axios
+      .post("http://localhost:8081/api/Egzemplarze/save", sumbitDataEgzemplarz)
+      .then((resp) => console.log(resp))
+      .catch((m) => alert(m))
+
     console.log("kek")
-    console.log(data)
+    console.log(sumbitDataEgzemplarz)
   }
 
   return (
@@ -156,58 +199,6 @@ export default function BookAdmin() {
                     kodRegalu={watchRegal.value}
                   />
                 )}
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="regal"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="regal"
-                      helperText={
-                        fieldsErrors.regal ? fieldsErrors.regal.message : null
-                      }
-                      variant="outlined"
-                      label="regal"
-                      error={fieldsErrors.regal}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    pattern: {
-                      value: /^\d+$/,
-                      message: "Niepoprawne regal",
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="regal"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="regal"
-                      helperText={
-                        fieldsErrors.regal ? fieldsErrors.regal.message : null
-                      }
-                      variant="outlined"
-                      label="regal"
-                      error={fieldsErrors.regal}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    pattern: {
-                      value: /^\d+$/,
-                      message: "Niepoprawne regal",
-                    },
-                  }}
-                />
               </Grid>
               <Grid item xs={12}>
                 {watchTyp && (
