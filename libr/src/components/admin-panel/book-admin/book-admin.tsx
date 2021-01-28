@@ -24,6 +24,8 @@ import {
   useHistory,
 } from "react-router-dom"
 import { getByLabelText } from "@testing-library/react"
+import { SelectComponent } from "../../form-components/select-component"
+import TextFieldComponent from "../../form-components/text-field-component"
 interface dataType {
   identification: string
   gatunek: string
@@ -74,7 +76,7 @@ export default function BookAdmin() {
           border: "1vh",
         }}
       >
-        <Typography style={{ paddingBottom: "2vh" }}>Logowanie:</Typography>
+        <Typography style={{ paddingBottom: "2vh" }}>Dodawanie:</Typography>
         <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <FormControl fullWidth variant="outlined">
             <Grid container spacing={2}>
@@ -104,85 +106,58 @@ export default function BookAdmin() {
                   }}
                 />
               </Grid>
-              <Controller
-                name="tytul"
-                as={
-                  <TextField
-                    fullWidth
-                    onChange={(e) => {
-                      console.log(e.target.value)
-                    }}
-                    id="tytul"
-                    helperText={
-                      fieldsErrors.tytul ? fieldsErrors.tytul.message : null
-                    }
-                    variant="outlined"
-                    label="tytul"
-                    error={fieldsErrors.tytul}
-                  />
-                }
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Required",
-                  pattern: {
-                    value: /^\d+$/,
-                    message: "Niepoprawne id egzemplarza",
-                  },
-                }}
-              />
-              {/* <Grid item xs={12}>
-                <Grid container>
-                  <Grid item xs={6}>
-                    <Typography>Typ publikacji:</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Controller
-                      name="typ"
-                      as={
-                        <Select
-                          native
-                          id="typ"
-                          variant="outlined"
-                          label="typ"
-                          error={fieldsErrors.tytul}
-                          value={state.age}
-                          onChange={handleChange}
-                          inputProps={{
-                            name: "typ",
-                            id: "typ",
-                          }}
-                        >
-                          <option aria-label="None" value="" />
-                          <option value={"K"}>Ksiazka</option>
-                          <option value={"C"}>Czasopismo</option>
-                          <option value={"A"}>Artykul</option>
-                        </Select>
+              <Grid item xs={12}>
+                <Controller
+                  name="tytul"
+                  as={
+                    <TextField
+                      fullWidth
+                      id="tytul"
+                      helperText={
+                        fieldsErrors.tytul ? fieldsErrors.tytul.message : null
                       }
-                      control={control}
-                      defaultValue=""
-                      rules={{
-                        required: "Required",
-                        pattern: {
-                          value: /^\d+$/,
-                          message: "Niepoprawne id egzemplarza",
-                        },
-                      }}
+                      variant="outlined"
+                      label="tytul"
+                      error={fieldsErrors.tytul}
                     />
-                  </Grid>
-                </Grid>
-              </Grid> */}
-              {/* <Grid item xs={12}>
+                  }
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Required",
+                    pattern: {
+                      value: /^\d+$/,
+                      message: "Niepoprawne tytul",
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <SelectComponent control={control} name="typ" />
+              </Grid>
+              <Grid item xs={12}>
                 {watchTyp && (
                   <Controller
-                    name="gatunek"
+                    name={
+                      watchTyp.value === "A"
+                        ? "artykul"
+                        : watchTyp.value === "K"
+                        ? "gatunek"
+                        : "czasopismo"
+                    }
                     as={
                       <TextField
                         fullWidth
                         onChange={(e) => {
                           console.log(e.target.value)
                         }}
-                        id="gatunek"
+                        id={
+                          watchTyp.value === "A"
+                            ? "artykul"
+                            : watchTyp.value === "K"
+                            ? "gatunek"
+                            : "czasopismo"
+                        }
                         helperText={
                           fieldsErrors.gatunek
                             ? fieldsErrors.gatunek.message
@@ -190,9 +165,9 @@ export default function BookAdmin() {
                         }
                         variant="outlined"
                         label={
-                          watchTyp === "A"
+                          watchTyp.value === "A"
                             ? "IsbnCzasopisma"
-                            : watchTyp === "K"
+                            : watchTyp.value === "K"
                             ? "Gatunek"
                             : "Temat"
                         }
@@ -205,16 +180,16 @@ export default function BookAdmin() {
                       required: "Required",
                       pattern: {
                         value: /^\d+$/,
-                        message: "Niepoprawne id egzemplarza",
+                        message: "asd",
                       },
                     }}
                   />
                 )}
-              </Grid>{" "} */}
+              </Grid>{" "}
               <Grid item xs={12}>
-                {every([!fieldsErrors.ISBN]) && (
+                {every([!fieldsErrors.ISBN, !fieldsErrors.tytul]) && (
                   <Button color="primary" type="submit" variant="outlined">
-                    Oddaj
+                    Dodaj
                   </Button>
                 )}
               </Grid>

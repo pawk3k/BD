@@ -2,35 +2,27 @@ import React from "react"
 import Select from "react-select"
 import { useForm, Controller } from "react-hook-form"
 import Input from "@material-ui/core/Input"
+interface SelectComponentProps {
+  control: any
+  name: string
+}
 
-export const SelectComponent = () => {
-  const { control, handleSubmit } = useForm()
-
-  const onSubmit = (data: unknown) => {
-    console.log(data)
-  }
-
+export const SelectComponent = (props: SelectComponentProps) => {
+  // const { control, handleSubmit } = useForm()
+  const { control, name } = props
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div>
       <Controller
-        name="firstName"
-        control={control}
-        defaultValue=""
-        render={({ onChange, value }) => (
-          <input onChange={onChange} value={value} />
-        )}
-      />
-      <Controller
-        name="iceCreamType"
+        name={name}
+        placeholder={name}
         control={control}
         options={[
-          { value: "chocolate", label: "Chocolate" },
-          { value: "strawberry", label: "Strawberry" },
-          { value: "vanilla", label: "Vanilla" },
+          { value: "K", label: "Ksiazka" },
+          { value: "A", label: "Artukul" },
+          { value: "C", label: "Czasopismo" },
         ]}
         as={Select}
       />
-      <input type="submit" />
-    </form>
+    </div>
   )
 }
