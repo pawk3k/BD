@@ -13,10 +13,6 @@ async function loginUser(credentials: unknown) {
     console.log(data)
   })
   // axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*"
-  const config = {
-    headers: { "Access-Control-Allow-Origin": "*" },
-  }
-  // return axios
   //   .get("http://localhost:8081/login", {
   //     headers: { autorization: "Basic" + window.btoa("username : password") },
   //   })

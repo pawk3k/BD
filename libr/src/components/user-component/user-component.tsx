@@ -13,11 +13,25 @@ import {
 import ButtonGroup from "@material-ui/core/ButtonGroup"
 import Button from "@material-ui/core/Button"
 import Reservation from "../revervation/reservation"
+import TableUser from "./book-rents/table-user"
 
 interface TableProps {
   userID: string
 }
+interface Data {
+  name: string
+  autor: string
+  position: string
+}
 
+function createData(name: string, autor: string, position: string): Data {
+  return { name, autor, position }
+}
+
+const rows = [
+  createData("Pan tadeusz", "Ms", "A1"),
+  createData("Norwegian Wood", "Ks", "C2"),
+]
 export default function UserComponent() {
   const match = useRouteMatch()
   return (
@@ -34,7 +48,8 @@ export default function UserComponent() {
       </div>
       <Switch>
         <Route path={`${match.path}/books`}>
-          <EnhancedTable />
+          <TableUser />
+          {/* <EnhancedTable rows={rows} /> */}
         </Route>
         <Route path={`${match.path}/rooms`}>
           <Reservation />

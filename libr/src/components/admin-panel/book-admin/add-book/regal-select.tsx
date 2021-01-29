@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { SelectComponent } from "../../form-components/select-component"
+import { SelectComponent } from "../../../form-components/select-component"
 
 interface ValueLabel {
   value: string

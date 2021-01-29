@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { SelectComponent } from "../../form-components/select-component"
+import { SelectComponent } from "../../../form-components/select-component"
 import { config } from "process"
 import { values } from "lodash"
 
@@ -19,7 +19,6 @@ export default function PolkiSelect(props: RegalSelectProps) {
   const { control, name, kodRegalu } = props
   const fetchData = async () => {
     //Disbale
-    const payload = JSON.stringify({ kodRegalu: kodRegalu })
     const data = await axios.post(
       `http://localhost:8081/api/Polki/listByRegalyP`,
       {

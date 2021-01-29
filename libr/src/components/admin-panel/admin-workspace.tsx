@@ -24,7 +24,9 @@ import {
 import { getByLabelText } from "@testing-library/react"
 import UserComponent from "../user-component/user-component"
 import BookRents from "./book-rents"
-import BookAdmin from "./book-admin/book-admin"
+import BookAdmin from "./book-admin/add-book/book-admin"
+import AdminBookRouter from "./book-admin/admin-book-router"
+import UsersAdminPanel from "./users-admin/users-admin-panel"
 interface dataType {
   identification: string
 }
@@ -84,6 +86,9 @@ export default function AdminWorskpace() {
         <Button to={`${match.url}/bookAdmin`} component={Link}>
           Ksiazki
         </Button>
+        <Button to={`${match.url}/usersAdmin`} component={Link}>
+          Uzytkownicy
+        </Button>
       </ButtonGroup>
 
       <Switch>
@@ -91,7 +96,10 @@ export default function AdminWorskpace() {
           <BookRents />
         </Route>
         <Route path={`${match.path}/bookAdmin`}>
-          <BookAdmin />
+          <AdminBookRouter />
+        </Route>
+        <Route path={`${match.path}/usersAdmin`}>
+          <UsersAdminPanel />
         </Route>
       </Switch>
     </div>

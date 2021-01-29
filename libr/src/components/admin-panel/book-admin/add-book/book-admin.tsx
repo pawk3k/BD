@@ -24,8 +24,8 @@ import {
   useHistory,
 } from "react-router-dom"
 import { getByLabelText } from "@testing-library/react"
-import { SelectComponent } from "../../form-components/select-component"
-import TextFieldComponent from "../../form-components/text-field-component"
+import { SelectComponent } from "../../../form-components/select-component"
+import TextFieldComponent from "../../../form-components/text-field-component"
 import RegalSelect from "./regal-select"
 import PolkiSelect from "./polki-select"
 interface dataType {

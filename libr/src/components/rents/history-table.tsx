@@ -162,7 +162,7 @@ interface TableProps {
   userID: string
 }
 
-export default function EnhancedTable() {
+export default function EnhancedTable(props: TableProps) {
   const { userID } = useParams<TableProps>()
   const classes = useStyles()
   const [order, setOrder] = React.useState<Order>("asc")

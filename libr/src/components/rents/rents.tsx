@@ -130,8 +130,6 @@ export default function Rents() {
       <Switch>
         <Route path={`${match.path}/:userID`}>
           <UserComponent />
-          {/* <EnhancedTable /> */}
-          {/* <Topic /> */}
         </Route>
         <Route path={match.path}>
           <h3>Please select a topic.</h3>
