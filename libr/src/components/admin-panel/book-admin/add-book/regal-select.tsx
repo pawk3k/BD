@@ -22,7 +22,6 @@ export default function RegalSelect(props: RegalSelectProps) {
       label: x.kodRegalu,
     }))
     console.log(regaly)
-    // setData(data.data)
     setData(regaly)
   }
   useEffect(() => {
