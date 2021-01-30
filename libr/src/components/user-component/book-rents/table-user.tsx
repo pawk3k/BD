@@ -75,7 +75,7 @@ export default function TableUser() {
   //   fetchDataUsersRents()
   // }, [])
   const data: [] | null = useFetchApi(
-    "http://localhost:8081/api/Uzytkownicy/rentList/102"
+    `http://localhost:8081/api/Uzytkownicy/rentList/${userID}`
   )
   console.log(data)
   const reformatedData =

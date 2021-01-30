@@ -10,6 +10,7 @@ import Rents from "../rents/rents"
 import { Link } from "react-router-dom"
 import { Button } from "@material-ui/core"
 import AdminWorskpace from "../admin-panel/admin-workspace"
+import HomeComponent from "./home-component"
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -71,12 +72,7 @@ export default function SimpleTabs() {
           indicatorColor="primary"
           centered
         >
-          <Tab
-            label="Main Page"
-            {...a11yProps(0)}
-            to="/main"
-            component={Link}
-          />
+          <Tab label="Main Page" {...a11yProps(0)} to="/" component={Link} />
           <Tab
             label="registration"
             {...a11yProps(1)}
@@ -92,7 +88,9 @@ export default function SimpleTabs() {
           <Tab label="Admin" {...a11yProps(3)} to="/admin" component={Link} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}></TabPanel>
+      <TabPanel value={value} index={0}>
+        <HomeComponent />
+      </TabPanel>
       <TabPanel value={value} index={1}>
         <StateTextFields />
       </TabPanel>

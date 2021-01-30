@@ -10,7 +10,7 @@ import {
   InputLabel,
   Select,
 } from "@material-ui/core"
-import { useForm, Controller } from "react-hook-form"
+import { useForm, Controller, FormProvider } from "react-hook-form"
 import axios from "axios"
 import every from "lodash/every"
 import {
@@ -73,7 +73,15 @@ export default function BookAdmin() {
   const unmutable = useRef(false)
   const [option, setOption] = useState<string>("")
   const [linkHref, setLink] = useState<string>("")
-  const { handleSubmit, control, errors: fieldsErrors, watch } = useForm({})
+
+  const methods = useForm()
+  const {
+    handleSubmit,
+    control,
+    errors: fieldsErrors,
+    watch,
+    setValue,
+  } = methods
   const watchName = watch("identification")
   const watchRegal = watch("regal")
   const watchTyp = watch("typ")
@@ -111,132 +119,34 @@ export default function BookAdmin() {
   }
 
   return (
-    <div style={{ margin: "auto" }}>
-      <Paper
-        style={{
-          padding: "15px",
-          marginTop: "10vh",
-          borderRadius: "50px",
-          boxShadow: "2vh 2vh 2vh  blue",
-          border: "1vh",
-        }}
-      >
-        <Typography style={{ paddingBottom: "2vh" }}>Dodawanie:</Typography>
-        <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-          <FormControl fullWidth variant="outlined">
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Controller
-                  name="ISBN"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="ISBN"
-                      helperText={
-                        fieldsErrors.ISBN ? fieldsErrors.ISBN.message : null
-                      }
-                      variant="outlined"
-                      label="ISBN"
-                      error={fieldsErrors.ISBN}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    pattern: {
-                      value: /^\d+$/,
-                      message: "Niepoprawne id",
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="tytul"
-                  as={
-                    <TextField
-                      fullWidth
-                      id="tytul"
-                      helperText={
-                        fieldsErrors.tytul ? fieldsErrors.tytul.message : null
-                      }
-                      variant="outlined"
-                      label="tytul"
-                      error={fieldsErrors.tytul}
-                    />
-                  }
-                  control={control}
-                  defaultValue=""
-                  rules={{
-                    required: "Required",
-                    pattern: {
-                      value: /^\d+$/,
-                      message: "Niepoprawne tytul",
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <SelectComponent
-                  control={control}
-                  name="typ"
-                  options={[
-                    { value: "K", label: "Ksiazka" },
-                    { value: "A", label: "Artukul" },
-                    { value: "C", label: "Czasopismo" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <RegalSelect name="regal" control={control} />
-              </Grid>
-              <Grid item xs={12}>
-                {watchRegal && (
-                  <PolkiSelect
-                    name="polki"
-                    control={control}
-                    kodRegalu={watchRegal.value}
-                  />
-                )}
-              </Grid>
-              <Grid item xs={12}>
-                {watchTyp && (
+    <FormProvider {...methods}>
+      <div style={{ margin: "auto" }}>
+        <Paper
+          style={{
+            padding: "15px",
+            marginTop: "10vh",
+            borderRadius: "50px",
+            boxShadow: "2vh 2vh 2vh  blue",
+            border: "1vh",
+          }}
+        >
+          <Typography style={{ paddingBottom: "2vh" }}>Dodawanie:</Typography>
+          <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+            <FormControl fullWidth variant="outlined">
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
                   <Controller
-                    name={
-                      watchTyp.value === "A"
-                        ? "artykul"
-                        : watchTyp.value === "K"
-                        ? "gatunek"
-                        : "czasopismo"
-                    }
+                    name="ISBN"
                     as={
                       <TextField
                         fullWidth
-                        onChange={(e) => {
-                          console.log(e.target.value)
-                        }}
-                        id={
-                          watchTyp.value === "A"
-                            ? "artykul"
-                            : watchTyp.value === "K"
-                            ? "gatunek"
-                            : "czasopismo"
-                        }
+                        id="ISBN"
                         helperText={
-                          fieldsErrors.gatunek
-                            ? fieldsErrors.gatunek.message
-                            : null
+                          fieldsErrors.ISBN ? fieldsErrors.ISBN.message : null
                         }
                         variant="outlined"
-                        label={
-                          watchTyp.value === "A"
-                            ? "IsbnCzasopisma"
-                            : watchTyp.value === "K"
-                            ? "Gatunek"
-                            : "Temat"
-                        }
-                        error={fieldsErrors.gatunek}
+                        label="ISBN"
+                        error={fieldsErrors.ISBN}
                       />
                     }
                     control={control}
@@ -245,23 +155,143 @@ export default function BookAdmin() {
                       required: "Required",
                       pattern: {
                         value: /^\d+$/,
-                        message: "Blad",
+                        message: "Niepoprawne id",
                       },
                     }}
                   />
-                )}
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    name="tytul"
+                    as={
+                      <TextField
+                        fullWidth
+                        id="tytul"
+                        helperText={
+                          fieldsErrors.tytul ? fieldsErrors.tytul.message : null
+                        }
+                        variant="outlined"
+                        label="tytul"
+                        error={fieldsErrors.tytul}
+                      />
+                    }
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Required",
+                      pattern: {
+                        value: /^\d+$/,
+                        message: "Niepoprawne tytul",
+                      },
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <SelectComponent
+                    control={control}
+                    name="typ"
+                    options={[
+                      { value: "K", label: "Ksiazka" },
+                      { value: "A", label: "Artukul" },
+                      { value: "C", label: "Czasopismo" },
+                    ]}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <RegalSelect name="regal" control={control} />
+                </Grid>
+                <Grid item xs={12}>
+                  <SelectComponent
+                    control={control}
+                    name="kek"
+                    options={[
+                      { value: "K", label: "Ksiazka" },
+                      { value: "A", label: "Artukul" },
+                      { value: "C", label: "Czasopismo" },
+                    ]}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  {watchRegal && (
+                    <div>
+                      <PolkiSelect
+                        name="polki"
+                        control={control}
+                        kodRegalu={watchRegal.value}
+                      />
+                      <button
+                        onClick={() => {
+                          setValue("polki", { value: null, label: null })
+                        }}
+                      >
+                        clearB
+                      </button>
+                    </div>
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  {watchTyp && (
+                    <Controller
+                      name={
+                        watchTyp.value === "A"
+                          ? "artykul"
+                          : watchTyp.value === "K"
+                          ? "gatunek"
+                          : "czasopismo"
+                      }
+                      as={
+                        <TextField
+                          fullWidth
+                          onChange={(e) => {
+                            console.log(e.target.value)
+                          }}
+                          id={
+                            watchTyp.value === "A"
+                              ? "artykul"
+                              : watchTyp.value === "K"
+                              ? "gatunek"
+                              : "czasopismo"
+                          }
+                          helperText={
+                            fieldsErrors.gatunek
+                              ? fieldsErrors.gatunek.message
+                              : null
+                          }
+                          variant="outlined"
+                          label={
+                            watchTyp.value === "A"
+                              ? "IsbnCzasopisma"
+                              : watchTyp.value === "K"
+                              ? "Gatunek"
+                              : "Temat"
+                          }
+                          error={fieldsErrors.gatunek}
+                        />
+                      }
+                      control={control}
+                      defaultValue=""
+                      rules={{
+                        required: "Required",
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "Blad",
+                        },
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  {every([!fieldsErrors.ISBN, !fieldsErrors.tytul]) && (
+                    <Button color="primary" type="submit" variant="outlined">
+                      Dodaj
+                    </Button>
+                  )}
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                {every([!fieldsErrors.ISBN, !fieldsErrors.tytul]) && (
-                  <Button color="primary" type="submit" variant="outlined">
-                    Dodaj
-                  </Button>
-                )}
-              </Grid>
-            </Grid>
-          </FormControl>
-        </form>
-      </Paper>
-    </div>
+            </FormControl>
+          </form>
+        </Paper>
+      </div>
+    </FormProvider>
   )
 }
