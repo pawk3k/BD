@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-export function useFetchApi<T>(apiUrl: string): [] | null {
+export function useFetchApi(apiUrl: string): [] | null {
   const [data, setData] = useState<[]>([])
   const fetchDataUsersRents = async () => {
     const data = await axios.get(apiUrl)

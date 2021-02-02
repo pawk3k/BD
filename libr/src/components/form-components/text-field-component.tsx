@@ -1,29 +1,39 @@
 import React from "react"
-import { useForm, Controller } from "react-hook-form"
-import TextField from "@material-ui/core/TextField"
-interface SelectComponentProps {
-  control?: any
-  fieldsErrors: any
-  name: string
-  errors?: any
-  // errors?: any
+import { TextField } from "@material-ui/core"
+import { useFormContext, Controller, useController } from "react-hook-form"
+
+interface TextFieldComponentProps {
+  nameP: string
 }
 
-const TextFieldComponent = (props: SelectComponentProps) => {
-  // const { control, handleSubmit } = useForm()
-  const { errors: fieldsErrors } = useForm({})
-
-  const { name } = props
-  // const errors = fieldsErrors
+function TextFeildComponent(props: TextFieldComponentProps) {
+  const { control, errors: fieldsErrors } = useFormContext()
+  const { nameP } = props
+  const {
+    field: { ref, ...inputProps },
+  } = useController({
+    name: nameP,
+    control,
+    rules: {
+      required: true,
+      pattern: {
+        value: /^\d+$/,
+        message: "Niepoprawne id",
+      },
+    },
+    defaultValue: "",
+  })
   return (
     <TextField
+      {...inputProps}
+      inputRef={ref}
       fullWidth
-      id={name}
-      helperText={fieldsErrors.name ? fieldsErrors.name.message : null}
+      id={nameP}
+      helperText={fieldsErrors[nameP] ? fieldsErrors[nameP].message : null}
       variant="outlined"
-      label={name}
-      error={fieldsErrors.name}
+      label={nameP}
+      error={fieldsErrors[nameP]}
     />
   )
 }
-export default TextFieldComponent
+export default TextFeildComponent

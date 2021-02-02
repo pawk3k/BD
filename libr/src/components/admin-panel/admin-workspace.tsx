@@ -27,6 +27,9 @@ import BookRents from "./book-rents"
 import BookAdmin from "./book-admin/add-book/book-admin"
 import AdminBookRouter from "./book-admin/admin-book-router"
 import UsersAdminPanel from "./users-admin/users-admin-panel"
+import RegalyAdmin from "./reagaly-admin/add-regal/add-regal"
+import AdminPolkiRouter from "./polki-admin/admin-polki-router"
+import AdminRegalyRouter from "./reagaly-admin/admin-regaly-roter"
 interface dataType {
   identification: string
 }
@@ -89,6 +92,12 @@ export default function AdminWorskpace() {
         <Button to={`${match.url}/usersAdmin`} component={Link}>
           Uzytkownicy
         </Button>
+        <Button to={`${match.url}/polkiAdmin`} component={Link}>
+          Polki
+        </Button>
+        <Button to={`${match.url}/regalyAdmin`} component={Link}>
+          Regaly
+        </Button>
       </ButtonGroup>
 
       <Switch>
@@ -100,6 +109,12 @@ export default function AdminWorskpace() {
         </Route>
         <Route path={`${match.path}/usersAdmin`}>
           <UsersAdminPanel />
+        </Route>
+        <Route path={`${match.path}/regalyAdmin`}>
+          <AdminRegalyRouter />
+        </Route>
+        <Route path={`${match.path}/polkiAdmin`}>
+          <AdminPolkiRouter />
         </Route>
       </Switch>
     </div>

@@ -25,9 +25,8 @@ import {
   useHistory,
 } from "react-router-dom"
 import { getByLabelText } from "@testing-library/react"
-import BookAdmin from "./add-book/book-admin"
-import DelBook from "./del-book/del-book"
 import { SelectDataType } from "../../../types/types"
+import AddRegal from "./add-regal/add-regal"
 interface dataType {
   identification: string
   gatunek: string
@@ -48,7 +47,7 @@ interface formSubmitType {
   temat?: string
   publikacjeByIdCzasopisma: number
 }
-export default function AdminBookRouter() {
+export default function AdminRegalyRouter() {
   const [state, setState] = React.useState<{
     age: string | number
     name: string
@@ -123,11 +122,9 @@ export default function AdminBookRouter() {
 
       <Switch>
         <Route path={`${match.path}/add`}>
-          <BookAdmin />
+          <AddRegal />
         </Route>
-        <Route path={`${match.path}/del`}>
-          <DelBook />
-        </Route>
+        <Route path={`${match.path}/del`}></Route>
       </Switch>
     </div>
   )

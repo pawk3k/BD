@@ -25,9 +25,10 @@ import {
 } from "react-router-dom"
 import { getByLabelText } from "@testing-library/react"
 import { SelectComponent } from "../../../form-components/select-component"
-import TextFieldComponent from "../../../form-components/text-field-component"
 import RegalSelect from "./regal-select"
 import PolkiSelect from "./polki-select"
+import { useFetchApi } from "../../../../hooks/useFetchApi"
+import { SelectDataType } from "../../../../types/types"
 interface dataType {
   identification: string
   gatunek: string
@@ -66,7 +67,14 @@ export default function BookAdmin() {
       [name]: event.target.value,
     })
   }
-
+  const fetchedData = useFetchApi("http://localhost:8081/api/Regaly/list")
+  const options = fetchedData?.map(
+    (x: any): SelectDataType => ({
+      value: x.kodRegalu,
+      label: x.kodRegalu,
+    })
+  )
+  console.log(options)
   const location = useLocation()
   const [isLoggedin, setIsLoggedin] = useState(false)
   const match = useRouteMatch()
@@ -204,11 +212,7 @@ export default function BookAdmin() {
                   <SelectComponent
                     control={control}
                     name="kek"
-                    options={[
-                      { value: "K", label: "Ksiazka" },
-                      { value: "A", label: "Artukul" },
-                      { value: "C", label: "Czasopismo" },
-                    ]}
+                    options={options as any[]}
                   />
                 </Grid>
                 <Grid item xs={12}>
