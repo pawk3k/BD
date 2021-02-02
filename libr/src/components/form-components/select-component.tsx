@@ -23,7 +23,7 @@ export const SelectComponent = (props: SelectComponentProps, ref: any) => {
   // const [value1, setValue] = useState<null>(null)
   useEffect(() => {
     // console.log("kek")
-    return reset()
+    // return reset()
     // return setValue(name, { value: null, label: null })
   }, [])
   return (

@@ -3,7 +3,7 @@ import axios from "axios"
 import SelectComponent from "../../../form-components/select-component"
 import { config } from "process"
 import { values } from "lodash"
-import { useForm } from "react-hook-form"
+import { useForm, useFormContext } from "react-hook-form"
 
 interface ValueLabel {
   value: string | null
@@ -18,11 +18,11 @@ interface RegalSelectProps {
 
 export function PolkiSelect(props: RegalSelectProps, ref: any) {
   const [data, setData] = useState<ValueLabel[]>()
-  const [value, setValue] = useState<ValueLabel | null>()
+  // const [value, setValue] = useState<ValueLabel | null>()
   const inputEl = useRef(null)
-  const { reset } = useForm()
   const [data1, setData1] = useState<ValueLabel[]>([])
   const { control, name, kodRegalu } = props
+  const { setValue, reset } = useFormContext()
   const fetchData = async () => {
     //Disbale
     const data = await axios.post(
@@ -41,26 +41,17 @@ export function PolkiSelect(props: RegalSelectProps, ref: any) {
 
     console.log(data)
   }
-  // const clearValue = () => {
-  //   inputEl.select.clearValue()
-  // }
 
   useEffect(() => {
     fetchData()
-    reset()
     console.log()
-    return setValue(null)
-    // setValue({ value: "0", label: "0" })
-    // console.log({ value: 0, label: 0 })
-    // clearValue()
-    // forceUpdate()
+    return setValue("polki", { value: null, placeholder: "polki" })
   }, [kodRegalu])
 
   return (
     <div>
       <SelectComponent
         key={name}
-        value={value}
         control={control}
         name={name}
         options={data as ValueLabel[]}

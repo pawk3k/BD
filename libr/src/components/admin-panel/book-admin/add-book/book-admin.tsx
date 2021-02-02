@@ -209,13 +209,6 @@ export default function BookAdmin() {
                   <RegalSelect name="regal" control={control} />
                 </Grid>
                 <Grid item xs={12}>
-                  <SelectComponent
-                    control={control}
-                    name="kek"
-                    options={options as any[]}
-                  />
-                </Grid>
-                <Grid item xs={12}>
                   {watchRegal && (
                     <div>
                       <PolkiSelect
@@ -223,13 +216,6 @@ export default function BookAdmin() {
                         control={control}
                         kodRegalu={watchRegal.value}
                       />
-                      <button
-                        onClick={() => {
-                          setValue("polki", { value: null, label: null })
-                        }}
-                      >
-                        clearB
-                      </button>
                     </div>
                   )}
                 </Grid>
