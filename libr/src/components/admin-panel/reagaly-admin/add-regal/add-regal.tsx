@@ -27,6 +27,17 @@ import TextFeildComponent from "../../../form-components/text-field-component"
 export default function AddRegal() {
   const methods = useForm()
   const { handleSubmit, control, errors: fieldsErrors } = methods
+
+  const rulesObj = {
+    rules: {
+      required: true,
+      pattern: {
+        value: /^\d+$/,
+        message: "Niepoprawne id",
+      },
+      maxLength: 2,
+    },
+  }
   const onSubmit = () => {
     console.log(fieldsErrors)
   }
@@ -46,7 +57,7 @@ export default function AddRegal() {
           <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <FormControl fullWidth variant="outlined">
               <Grid container spacing={2}>
-                <TextFeildComponent nameP="id" />
+                <TextFeildComponent nameP="id" rulesObj={rulesObj} />
                 <Button
                   onClick={() => console.log(fieldsErrors)}
                   color="primary"

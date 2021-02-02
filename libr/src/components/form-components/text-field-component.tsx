@@ -4,23 +4,19 @@ import { useFormContext, Controller, useController } from "react-hook-form"
 
 interface TextFieldComponentProps {
   nameP: string
+  rulesObj?: any
 }
 
 function TextFeildComponent(props: TextFieldComponentProps) {
   const { control, errors: fieldsErrors } = useFormContext()
-  const { nameP } = props
+  const { nameP, rulesObj } = props
+  const { rules } = rulesObj
   const {
     field: { ref, ...inputProps },
   } = useController({
     name: nameP,
     control,
-    rules: {
-      required: true,
-      pattern: {
-        value: /^\d+$/,
-        message: "Niepoprawne id",
-      },
-    },
+    rules,
     defaultValue: "",
   })
   return (

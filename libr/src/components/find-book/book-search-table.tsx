@@ -38,7 +38,7 @@ export const BookSearchTable = () => {
   }
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [userID])
 
   return (
     <div>
