@@ -92,7 +92,7 @@ CREATE TABLE Wynajem(
    CHECK(deadline >= godz_rozpoczecia),
    CHECK(godz_zakonczenia >= godz_rozpoczecia),
 
-   PRIMARY KEY(data, godz_rozpoczecia, id_uzytkownika, id_sali)
+   PRIMARY KEY(data, godz_rozpoczecia, id_sali)
 );
 
 --Sort
