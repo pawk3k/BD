@@ -12,7 +12,7 @@ import {
 } from "react-router-dom"
 import ButtonGroup from "@material-ui/core/ButtonGroup"
 import Button from "@material-ui/core/Button"
-import Reservation from "../revervation/reservation"
+import Reservation from "./revervation/reservation"
 import TableUser from "./book-rents/table-user"
 
 interface TableProps {

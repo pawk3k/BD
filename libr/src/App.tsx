@@ -11,7 +11,7 @@ import {
 // import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-import Reservation from "./components/revervation/reservation"
+import Reservation from "./components/user-component/revervation/reservation"
 import Login from "./components/login/login"
 import Rents from "./components/rents/rents"
 import MainRouter from "./components/main-router/main-router"

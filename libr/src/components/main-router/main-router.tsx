@@ -10,7 +10,7 @@ import {
 // import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-import Reservation from "../revervation/reservation"
+import Reservation from "../user-component/revervation/reservation"
 import Login from "../login/login"
 import Rents from "../rents/rents"
 import HomeComponent from "../navigation/home-component"

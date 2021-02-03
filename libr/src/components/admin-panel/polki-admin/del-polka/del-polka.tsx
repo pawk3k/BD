@@ -50,35 +50,6 @@ export default function DelPolka() {
       label: x.kodRegalu,
     })
   ) as any[]
-  // let dataP = useFetchApi("http://localhost:8081/api/Polki/list") as any[]
-  // useFetchApi("http://localhost:8081/api/Polki/list")
-  //   .filter((x) => x.kodRegalu == watchRegal.value)
-  //   .map((x: any) => ({
-  //     value: x.nrPolki + "",
-  //     label: x.nrPolki + "",
-  //   }))
-  // let dataP
-  // useEffect(() => {
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   dataP = useFetchApi("http://localhost:8081/api/Polki/list")
-  //     ?.filter((x: any) => x.kodRegalu == watchRegal.value)
-  //     ?.map((x: any) => ({
-  //       value: x.nrPolki + "",
-  //       label: x.nrPolki + "",
-  //     })) as any[]
-  // }, [watchRegal])
-  // const dataP = useFetchApi("http://localhost:8081/api/Polki/list") as any[]
-  // dataP = dataP.filter((x) => x.kodRegalu == watchRegal)
-  // useEffect(() => {
-  //   console.log(watchRegal)
-  //   dataP = dataP.filter((x) => x.kodRegalu == watchRegal.value)
-  //   console.log(dataP)
-  //   dataP = dataP.map((x: any) => ({
-  //     value: x.nrPolki + "",
-  //     label: x.nrPolki + "",
-  //   }))
-  //   console.log(dataP)
-  // }, [watchRegal])
   return (
     <FormProvider {...methods}>
       <div style={{ margin: "auto" }}>
