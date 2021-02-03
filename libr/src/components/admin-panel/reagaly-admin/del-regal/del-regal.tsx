@@ -23,26 +23,32 @@ import {
 import { getByLabelText } from "@testing-library/react"
 import { useForm, FormProvider, useFormContext } from "react-hook-form"
 import TextFeildComponent from "../../../form-components/text-field-component"
+import { SelectComponent } from "../../../form-components/select-component"
+import { useFetchApi } from "../../../../hooks/useFetchApi"
 
-export default function AddRegal() {
+export default function DelRegal() {
   const methods = useForm()
-  const { handleSubmit, control, errors: fieldsErrors } = methods
-
-  const rulesObj = {
-    rules: {
-      required: true,
-      pattern: {
-        value: /^\w{1}$/,
-        message: "Niepoprawny kod Regalu",
-      },
-    },
-  }
+  const { handleSubmit, control, errors: fieldsErrors, reset } = methods
+  const [, updateState] = React.useState<{}>()
+  const forceUpdate = React.useCallback(() => updateState({}), [])
+  const [changeS, setState] = useState<null>()
+  const [endData, setEndData] = useState<{}>()
   const onSubmit = (data: any) => {
+    console.log(data)
     axios
-      .post("http://localhost:8081/api/Regaly/save", data)
-      .then((resp) => console.log(resp))
+      .delete(`http://localhost:8081/api/Regaly/delete/${data.kodRegalu.value}`)
+      .then((resp) => alert("usunieto regal"))
       .catch((m) => alert(m))
+    reset()
+    forceUpdate()
   }
+  const data = useFetchApi("http://localhost:8081/api/Regaly/list")?.map(
+    (x: any) => ({
+      value: x.kodRegalu,
+      label: x.kodRegalu,
+    })
+  ) as any[]
+  // setEndData(data)
   return (
     <FormProvider {...methods}>
       <div style={{ margin: "auto" }}>
@@ -56,22 +62,26 @@ export default function AddRegal() {
           }}
         >
           <Typography style={{ paddingBottom: "2vh" }}>
-            Dodawanie regalu:
+            Usuwanie Regalu:
           </Typography>
           <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <FormControl fullWidth variant="outlined">
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextFeildComponent nameP="kodRegalu" rulesObj={rulesObj} />
+                  <SelectComponent
+                    control={control}
+                    name="kodRegalu"
+                    options={data as any[]}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Button
-                    onClick={() => console.log(fieldsErrors)}
+                    onClick={() => setState(null)}
                     color="primary"
                     type="submit"
                     variant="outlined"
                   >
-                    Dodaj
+                    Usun
                   </Button>
                 </Grid>
               </Grid>

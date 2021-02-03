@@ -27,6 +27,7 @@ import {
 import { getByLabelText } from "@testing-library/react"
 import { SelectDataType } from "../../../types/types"
 import AddPolka from "./add-polka/add-pokla"
+import DelPolka from "./del-polka/del-polka"
 interface dataType {
   identification: string
   gatunek: string
@@ -124,7 +125,9 @@ export default function AdminPolkiRouter() {
         <Route path={`${match.path}/add`}>
           <AddPolka />
         </Route>
-        <Route path={`${match.path}/del`}></Route>
+        <Route path={`${match.path}/del`}>
+          <DelPolka />
+        </Route>
       </Switch>
     </div>
   )

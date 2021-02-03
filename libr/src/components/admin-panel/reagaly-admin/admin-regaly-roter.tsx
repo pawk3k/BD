@@ -27,6 +27,7 @@ import {
 import { getByLabelText } from "@testing-library/react"
 import { SelectDataType } from "../../../types/types"
 import AddRegal from "./add-regal/add-regal"
+import DelRegal from "./del-regal/del-regal"
 interface dataType {
   identification: string
   gatunek: string
@@ -124,7 +125,9 @@ export default function AdminRegalyRouter() {
         <Route path={`${match.path}/add`}>
           <AddRegal />
         </Route>
-        <Route path={`${match.path}/del`}></Route>
+        <Route path={`${match.path}/del`}>
+          <DelRegal />
+        </Route>
       </Switch>
     </div>
   )

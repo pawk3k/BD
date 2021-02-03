@@ -35,6 +35,7 @@ export const SelectComponent = (props: SelectComponentProps, ref: any) => {
         defaultValue={null}
         as={
           <Select
+            color="primary"
             ref={ref}
             key={`my_unique_select_key__${name}`}
             isClearable
