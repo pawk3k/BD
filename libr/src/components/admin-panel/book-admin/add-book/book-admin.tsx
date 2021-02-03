@@ -29,6 +29,9 @@ import RegalSelect from "./regal-select"
 import PolkiSelect from "./polki-select"
 import { useFetchApi } from "../../../../hooks/useFetchApi"
 import { SelectDataType } from "../../../../types/types"
+import PolkaSelect from "../../polki-admin/del-polka/polka-select"
+import { values } from "lodash"
+import TextFeildComponent from "../../../form-components/text-field-component"
 interface dataType {
   identification: string
   gatunek: string
@@ -90,40 +93,46 @@ export default function BookAdmin() {
     watch,
     setValue,
   } = methods
-  const watchName = watch("identification")
   const watchRegal = watch("regal")
   const watchTyp = watch("typ")
+  const watchPolka = watch("nrPolki")
+
+  const watchGatunek = watch("gatunek")
+  const watchArtukul = watch("artykul")
+  const watchCzasopismo = watch("czasopismo")
+
   console.log(watchTyp)
   const onSubmit = (data: any) => {
-    const sumbitDataPublication: formSubmitType = {
-      isbn: data.ISBN,
-      typ: data.typ.value,
-      tytul: data.tytul,
-      gatunek: data.gatunek !== undefined ? data.gatunek : null,
-      temat: data.temat !== undefined ? data.temat : null,
-      publikacjeByIdCzasopisma:
-        data.publikacjeByIdCzasopisma !== undefined
-          ? data.publikacjeByIdCzasopisma
-          : null,
-    }
-    const sumbitDataEgzemplarz: egzemplarzDataType = {
-      isbn: data.ISBN,
-      idEgzemplarza: null,
-      czyWypozyczony: false,
-      pozycja: data.polki.value + data.regal.value,
-    }
+    console.log(data)
+    // const sumbitDataPublication: formSubmitType = {
+    //   isbn: data.ISBN,
+    //   typ: data.typ.value,
+    //   tytul: data.tytul,
+    //   gatunek: data.gatunek !== undefined ? data.gatunek : null,
+    //   temat: data.temat !== undefined ? data.temat : null,
+    //   publikacjeByIdCzasopisma:
+    //     data.publikacjeByIdCzasopisma !== undefined
+    //       ? data.publikacjeByIdCzasopisma
+    //       : null,
+    // }
+    // const sumbitDataEgzemplarz: egzemplarzDataType = {
+    //   isbn: data.ISBN,
+    //   idEgzemplarza: null,
+    //   czyWypozyczony: false,
+    //   pozycja: data.polki.value + data.regal.value,
+    // }
 
-    axios
-      .post("http://localhost:8081/api/Publikacje/save", sumbitDataPublication)
-      .then((resp) => console.log(resp))
-      .catch((m) => alert(m))
-    axios
-      .post("http://localhost:8081/api/Egzemplarze/save", sumbitDataEgzemplarz)
-      .then((resp) => console.log(resp))
-      .catch((m) => alert(m))
+    // axios
+    //   .post("http://localhost:8081/api/Publikacje/save", sumbitDataPublication)
+    //   .then((resp) => console.log(resp))
+    //   .catch((m) => alert(m))
+    // axios
+    //   .post("http://localhost:8081/api/Egzemplarze/save", sumbitDataEgzemplarz)
+    //   .then((resp) => console.log(resp))
+    //   .catch((m) => alert(m))
 
-    console.log("kek")
-    console.log(sumbitDataEgzemplarz)
+    // console.log("kek")
+    // console.log(sumbitDataEgzemplarz)
   }
 
   return (
@@ -143,7 +152,19 @@ export default function BookAdmin() {
             <FormControl fullWidth variant="outlined">
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Controller
+                  <TextFeildComponent
+                    nameP="ISBN"
+                    rulesObj={{
+                      rules: {
+                        required: "Required",
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "Niepoprawne id",
+                        },
+                      },
+                    }}
+                  />
+                  {/* <Controller
                     name="ISBN"
                     as={
                       <TextField
@@ -166,10 +187,22 @@ export default function BookAdmin() {
                         message: "Niepoprawne id",
                       },
                     }}
-                  />
+                  /> */}
                 </Grid>
                 <Grid item xs={12}>
-                  <Controller
+                  <TextFeildComponent
+                    nameP="tytul"
+                    rulesObj={{
+                      rules: {
+                        required: "Required",
+                        pattern: {
+                          value: /^.+$/,
+                          message: "Niepoprawne tytul",
+                        },
+                      },
+                    }}
+                  />
+                  {/* <Controller
                     name="tytul"
                     as={
                       <TextField
@@ -185,14 +218,8 @@ export default function BookAdmin() {
                     }
                     control={control}
                     defaultValue=""
-                    rules={{
-                      required: "Required",
-                      pattern: {
-                        value: /^\d+$/,
-                        message: "Niepoprawne tytul",
-                      },
-                    }}
-                  />
+                    rules={}
+                  /> */}
                 </Grid>
                 <Grid item xs={12}>
                   <SelectComponent
@@ -211,71 +238,100 @@ export default function BookAdmin() {
                 <Grid item xs={12}>
                   {watchRegal && (
                     <div>
-                      <PolkiSelect
+                      <PolkaSelect kodRegalu={watchRegal.value} />
+                      {/* <PolkiSelect
                         name="polki"
                         control={control}
                         kodRegalu={watchRegal.value}
-                      />
+                      /> */}
                     </div>
                   )}
                 </Grid>
                 <Grid item xs={12}>
                   {watchTyp && (
-                    <Controller
-                      name={
+                    <TextFeildComponent
+                      nameP={
                         watchTyp.value === "A"
                           ? "artykul"
                           : watchTyp.value === "K"
                           ? "gatunek"
                           : "czasopismo"
                       }
-                      as={
-                        <TextField
-                          fullWidth
-                          onChange={(e) => {
-                            console.log(e.target.value)
-                          }}
-                          id={
-                            watchTyp.value === "A"
-                              ? "artykul"
-                              : watchTyp.value === "K"
-                              ? "gatunek"
-                              : "czasopismo"
-                          }
-                          helperText={
-                            fieldsErrors.gatunek
-                              ? fieldsErrors.gatunek.message
-                              : null
-                          }
-                          variant="outlined"
-                          label={
-                            watchTyp.value === "A"
-                              ? "IsbnCzasopisma"
-                              : watchTyp.value === "K"
-                              ? "Gatunek"
-                              : "Temat"
-                          }
-                          error={fieldsErrors.gatunek}
-                        />
-                      }
-                      control={control}
-                      defaultValue=""
-                      rules={{
-                        required: "Required",
-                        pattern: {
-                          value: /^\d+$/,
-                          message: "Blad",
+                      rulesObj={{
+                        rules: {
+                          required: "Required",
+                          pattern: {
+                            value: /^[A-Za-z]+$/,
+                            message: "Niepoprawne tytul",
+                          },
                         },
                       }}
                     />
+                    // <Controller
+                    //   name={
+                    //     watchTyp.value === "A"
+                    //       ? "artykul"
+                    //       : watchTyp.value === "K"
+                    //       ? "gatunek"
+                    //       : "czasopismo"
+                    //   }
+                    //   as={
+                    //     <TextField
+                    //       fullWidth
+                    //       onChange={(e) => {
+                    //         console.log(e.target.value)
+                    //       }}
+                    //       id={
+                    //         watchTyp.value === "A"
+                    //           ? "artykul"
+                    //           : watchTyp.value === "K"
+                    //           ? "gatunek"
+                    //           : "czasopismo"
+                    //       }
+                    //       helperText={
+                    //         fieldsErrors.gatunek
+                    //           ? fieldsErrors.gatunek.message
+                    //           : null
+                    //       }
+                    //       variant="outlined"
+                    //       label={
+                    //         watchTyp.value === "A"
+                    //           ? "IsbnCzasopisma"
+                    //           : watchTyp.value === "K"
+                    //           ? "Gatunek"
+                    //           : "Temat"
+                    //       }
+                    //       error={fieldsErrors.gatunek}
+                    //     />
+                    //   }
+                    //   control={control}
+                    //   defaultValue=""
+                    //   rules={{
+                    //     required: "Required",
+                    //     pattern: {
+                    //       value: /^\d+$/,
+                    //       message: "Blad",
+                    //     },
+                    //   }}
+                    // />
                   )}
                 </Grid>
                 <Grid item xs={12}>
-                  {every([!fieldsErrors.ISBN, !fieldsErrors.tytul]) && (
-                    <Button color="primary" type="submit" variant="outlined">
-                      Dodaj
-                    </Button>
-                  )}
+                  {every([
+                    !fieldsErrors.ISBN,
+                    !fieldsErrors.tytul,
+                    !fieldsErrors.gatunek,
+                    !fieldsErrors.czasopismo,
+                    !fieldsErrors.artykul,
+                    watchTyp,
+                    watchPolka,
+                    watchRegal,
+                  ]) &&
+                    (watchArtukul || watchCzasopismo || watchGatunek) && (
+                      <Button color="primary" type="submit" variant="outlined">
+                        Dodaj
+                      </Button>
+                    )}
                 </Grid>
               </Grid>
             </FormControl>

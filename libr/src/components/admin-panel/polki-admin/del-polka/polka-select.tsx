@@ -34,25 +34,6 @@ interface PolkaProps {
 export default function PolkaSelect(props: PolkaProps) {
   const { kodRegalu } = props
   // const { handleSubmit, control, errors: fieldsErrors, reset, watch } = methods
-  const [, updateState] = React.useState<{}>()
-  const forceUpdate = React.useCallback(() => updateState({}), [])
-  const [changeS, setState] = useState<null>()
-  const [endData, setEndData] = useState<{}>()
-  const onSubmit = (data: any) => {
-    console.log(data)
-    forceUpdate()
-  }
-
-  // let dataP = useFetchApi("http://localhost:8081/api/Polki/list") as any[]
-  // useFetchApi("http://localhost:8081/api/Polki/list")
-  //   .filter((x) => x.kodRegalu == watchRegal.value)
-  //   .map((x: any) => ({
-  //     value: x.nrPolki + "",
-  //     label: x.nrPolki + "",
-  //   }))
-  // let dataP
-  // useEffect(() => {
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dataP = useFetchApi("http://localhost:8081/api/Polki/list", kodRegalu)
     ?.filter((x: any) => x.kodRegalu == kodRegalu)
     ?.map((x: any) => ({
@@ -60,18 +41,5 @@ export default function PolkaSelect(props: PolkaProps) {
       label: x.nrPolki + "",
     })) as any[]
 
-  // }, [watchRegal])
-  // const dataP = useFetchApi("http://localhost:8081/api/Polki/list") as any[]
-  // dataP = dataP.filter((x) => x.kodRegalu == watchRegal)
-  // useEffect(() => {
-  //   console.log(watchRegal)
-  //   dataP = dataP.filter((x) => x.kodRegalu == watchRegal.value)
-  //   console.log(dataP)
-  //   dataP = dataP.map((x: any) => ({
-  //     value: x.nrPolki + "",
-  //     label: x.nrPolki + "",
-  //   }))
-  //   console.log(dataP)
-  // }, [watchRegal])
   return <SelectComponent name="nrPolki" options={dataP as any[]} />
 }

@@ -36,6 +36,7 @@ export default function Reservation() {
 
   const watchSala = watch("sala")
   const watchData = watch("data")
+  const watchGodzina = watch("godzina")
   useEffect(() => {
     console.log(watchData)
     const splited = watchData && (watchData.split("-") as any)
@@ -73,7 +74,10 @@ export default function Reservation() {
     }
     // console.log(data)
     // console.log(endData)
-    axios.post("http://localhost:8081/api/Wynajem/save", endData)
+    axios
+      .post("http://localhost:8081/api/Wynajem/save", endData)
+      .then((data) => alert("Zarezerwowano sale"))
+      .catch((data) => alert("nie udalo sie"))
   }
 
   return (
@@ -127,21 +131,14 @@ export default function Reservation() {
                         day={watchData.slice(-2)}
                       />
                     )}
-                    {/* <SelectComponent
-                      name="godzina"
-                      options={[
-                        { value: "10-12", label: "10-12" },
-                        { value: "12-14", label: "12-14" },
-                        { value: "14-16", label: "14-16" },
-                        { value: "16-18", label: "16-18" },
-                      ]}
-                    /> */}
                   </Grid>
                 </Grid>{" "}
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Button type="submit">Rezerwuj</Button>
-                  </Grid>
+                  {watchData && watchSala && watchGodzina && (
+                    <Grid item xs={12}>
+                      <Button type="submit">Rezerwuj</Button>
+                    </Grid>
+                  )}
                 </Grid>
               </Grid>{" "}
             </FormControl>
